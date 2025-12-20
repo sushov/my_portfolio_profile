@@ -4,39 +4,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sushov Karmacharya | Backend & Distributed Systems Engineer</title>
+  <link rel="icon" type="image/svg+xml"
+  href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%237C3AED"/><stop offset="1" stop-color="%2306B6D4"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(%23g)"/><text x="64" y="78" font-size="56" text-anchor="middle" fill="white" font-family="SFMono-Regular,Menlo,Consolas,monospace">SK</text></svg>'>
+  
 
-  <!--
-    Single-file portfolio (HTML + CSS + JS)
-    Recruiter-first: fast scan → proof → projects → links → contact.
-    Replace placeholders:
-      - GitHub URL
-      - LinkedIn URL
-      - Resume PDF link
-      - Project repo links
-      - Metrics (p99 latency, DAU, MTTR, uptime, msg/min)
-  -->
+  <!-- ✅ Mermaid (code-as-diagrams) -->
+  <script type="module">
+    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: "dark",
+      securityLevel: "loose",
+      themeVariables: {
+        fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace",
+        primaryColor: "#101B33",
+        primaryTextColor: "#E9EEFF",
+        primaryBorderColor: "rgba(255,255,255,.14)",
+        lineColor: "rgba(255,255,255,.30)",
+        secondaryColor: "#0E162A",
+        tertiaryColor: "#0A1020",
+        noteBkgColor: "#0E162A",
+        noteTextColor: "#E9EEFF",
+      },
+      flowchart: { curve: "basis" },
+    });
+  </script>
 
   <style>
     :root{
-      --bg: #070A10;
+      --bg:#070A10;
       --bg2:#0A1020;
       --card:#0E162A;
       --card2:#101B33;
-      --stroke: rgba(255,255,255,.10);
-      --stroke2: rgba(255,255,255,.14);
+      --stroke:rgba(255,255,255,.10);
+      --stroke2:rgba(255,255,255,.16);
       --text:#E9EEFF;
       --muted:#A9B4D0;
       --muted2:#7D89AA;
-      --accent:#7C3AED;      /* violet */
-      --accent2:#22C55E;     /* green */
-      --accent3:#06B6D4;     /* cyan */
+
+      --accent:#7C3AED;    /* violet */
+      --accent2:#22C55E;   /* green */
+      --accent3:#06B6D4;   /* cyan */
       --warn:#F59E0B;
       --danger:#EF4444;
 
-      --shadow: 0 18px 50px rgba(0,0,0,.55);
-      --shadow2: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius2: 14px;
+      --shadow:0 18px 50px rgba(0,0,0,.55);
+      --shadow2:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:14px;
 
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -45,28 +60,28 @@
     *{ box-sizing:border-box; margin:0; padding:0; }
     html{ scroll-behavior:smooth; }
     body{
-      font-family: var(--sans);
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.22), transparent 60%),
-                  radial-gradient(900px 500px at 80% 25%, rgba(6,182,212,.14), transparent 55%),
-                  radial-gradient(1000px 700px at 60% 90%, rgba(34,197,94,.12), transparent 65%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
+      font-family:var(--sans);
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(900px 500px at 80% 25%, rgba(6,182,212,.14), transparent 55%),
+        radial-gradient(1000px 700px at 60% 90%, rgba(34,197,94,.12), transparent 65%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
     }
-    a{ color: inherit; text-decoration:none; }
-    button{ font-family: inherit; }
-    .container{ width:min(1100px, 92vw); margin:0 auto; }
+    a{ color:inherit; text-decoration:none; }
+    button{ font-family:inherit; }
+    .container{ width:min(1120px, 92vw); margin:0 auto; }
 
-    /* Subtle grid */
+    /* Subtle grid overlay */
     .grid-bg{
-      position: fixed;
-      inset:0;
+      position:fixed; inset:0;
       background-image:
         linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(circle at 50% 35%, rgba(0,0,0,.9), transparent 65%);
+      background-size:64px 64px;
+      mask-image:radial-gradient(circle at 50% 35%, rgba(0,0,0,.9), transparent 65%);
       pointer-events:none;
       opacity:.18;
       z-index:0;
@@ -74,141 +89,96 @@
 
     /* Nav */
     .nav{
-      position: sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter: blur(14px);
-      background: rgba(7,10,16,.65);
-      border-bottom: 1px solid rgba(255,255,255,.07);
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:blur(14px);
+      background:rgba(7,10,16,.65);
+      border-bottom:1px solid rgba(255,255,255,.07);
     }
     .nav-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      padding: 14px 0;
+      padding:14px 0;
       gap:16px;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width: 220px;
+      display:flex; align-items:center; gap:12px;
+      min-width:240px;
     }
     .logo{
-      width:36px; height:36px; border-radius: 12px;
+      width:36px; height:36px; border-radius:12px;
       background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%),
         linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.85));
-      box-shadow: 0 10px 25px rgba(124,58,237,.25);
-      border: 1px solid rgba(255,255,255,.18);
+      box-shadow:0 10px 25px rgba(124,58,237,.25);
+      border:1px solid rgba(255,255,255,.18);
     }
-    .brand strong{
-      display:block;
-      font-size: .98rem;
-      letter-spacing: .2px;
-    }
-    .brand span{
-      display:block;
-      font-size: .80rem;
-      color: var(--muted);
-      margin-top: -2px;
-    }
+    .brand strong{ display:block; font-size:.98rem; letter-spacing:.2px; }
+    .brand span{ display:block; font-size:.80rem; color:var(--muted); margin-top:-2px; }
 
     .nav-links{
-      display:flex;
-      gap: 16px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+      display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
     }
     .nav-links a{
-      font-size:.90rem;
-      color: var(--muted);
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid transparent;
-      transition: .2s ease;
+      font-size:.90rem; color:var(--muted);
+      padding:8px 10px; border-radius:10px;
+      border:1px solid transparent;
+      transition:.2s ease;
     }
     .nav-links a:hover{
-      color: var(--text);
-      border-color: rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border-color:rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
     }
 
-    .nav-cta{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin-left: 6px;
-    }
+    .nav-cta{ display:flex; gap:10px; align-items:center; margin-left:6px; }
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      font-weight: 600;
-      font-size: .92rem;
-      transition: .2s ease;
-      box-shadow: 0 8px 18px rgba(0,0,0,.22);
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 12px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
+      font-weight:700;
+      font-size:.92rem;
+      transition:.2s ease;
+      box-shadow:0 8px 18px rgba(0,0,0,.22);
       cursor:pointer;
       white-space:nowrap;
     }
     .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);
     }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.90));
-      border-color: rgba(255,255,255,.14);
-      box-shadow: 0 16px 36px rgba(124,58,237,.18);
+      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.90));
+      border-color:rgba(255,255,255,.14);
+      box-shadow:0 16px 36px rgba(124,58,237,.18);
     }
-    .btn.primary:hover{ filter: brightness(1.05); }
+    .btn.primary:hover{ filter:brightness(1.05); }
     .btn .dot{
-      width:9px; height:9px; border-radius: 99px;
-      background: var(--accent2);
-      box-shadow: 0 0 14px rgba(34,197,94,.55);
-    }
-    .btn.icon{
-      padding: 10px 12px;
-    }
-    .icon{
-      width: 16px;
-      height: 16px;
-      display:inline-block;
-      vertical-align:middle;
-      opacity:.92;
+      width:9px; height:9px; border-radius:999px;
+      background:var(--accent2);
+      box-shadow:0 0 14px rgba(34,197,94,.55);
     }
 
     /* Hero */
-    header{
-      position:relative;
-      z-index:1;
-      padding: 42px 0 24px;
-    }
+    header{ position:relative; z-index:1; padding:42px 0 18px; }
     .hero{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-      align-items: start;
-      margin-top: 10px;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:start;
+      margin-top:10px;
     }
-    @media (max-width: 920px){
-      .hero{ grid-template-columns: 1fr; }
-      .brand{ min-width:auto; }
-    }
+    @media (max-width: 920px){ .hero{ grid-template-columns:1fr; } .brand{min-width:auto;} }
 
     .hero-card{
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16,27,51,.92), rgba(14,22,42,.92));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      padding: 22px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(16,27,51,.92), rgba(14,22,42,.92));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow);
+      padding:22px;
       position:relative;
       overflow:hidden;
     }
@@ -216,237 +186,227 @@
       content:"";
       position:absolute;
       inset:-2px;
-      background: radial-gradient(800px 260px at 10% 0%, rgba(124,58,237,.25), transparent 60%),
-                  radial-gradient(700px 250px at 90% 20%, rgba(6,182,212,.18), transparent 60%);
+      background:
+        radial-gradient(800px 260px at 10% 0%, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(700px 250px at 90% 20%, rgba(6,182,212,.18), transparent 60%);
       opacity:.95;
       pointer-events:none;
     }
     .hero-card > *{ position:relative; z-index:1; }
 
     .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-family: var(--mono);
-      font-size: .82rem;
-      width: fit-content;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      font-family:var(--mono);
+      font-size:.82rem;
+      width:fit-content;
     }
     .pulse{
-      width:10px; height:10px; border-radius:99px;
-      background: var(--accent2);
-      box-shadow: 0 0 0 0 rgba(34,197,94,.55);
-      animation: pulse 2.2s infinite;
+      width:10px; height:10px; border-radius:999px;
+      background:var(--accent2);
+      box-shadow:0 0 0 0 rgba(34,197,94,.55);
+      animation:pulse 2.2s infinite;
     }
     @keyframes pulse{
-      0%{ box-shadow: 0 0 0 0 rgba(34,197,94,.35); }
-      70%{ box-shadow: 0 0 0 14px rgba(34,197,94,0); }
-      100%{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+      0%{ box-shadow:0 0 0 0 rgba(34,197,94,.35); }
+      70%{ box-shadow:0 0 0 14px rgba(34,197,94,0); }
+      100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); }
     }
 
     h1{
-      font-size: clamp(1.8rem, 2.6vw, 2.6rem);
-      line-height: 1.15;
-      letter-spacing: -0.6px;
-      margin: 14px 0 10px;
+      font-size:clamp(1.8rem, 2.6vw, 2.6rem);
+      line-height:1.15;
+      letter-spacing:-0.6px;
+      margin:14px 0 10px;
     }
     .subtitle{
-      color: var(--muted);
-      font-size: 1.02rem;
-      max-width: 62ch;
+      color:var(--muted);
+      font-size:1.02rem;
+      max-width:70ch;
     }
-    .subtitle strong{
-      color: var(--text);
-      font-weight: 700;
+    .subtitle strong{ color:var(--text); font-weight:800; }
+
+    /* ✅ Fix flaw #3: keywords are STATIC + highlighted immediately */
+    .keyword-bar{
+      margin-top:14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
     }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      font-family:var(--mono);
+      font-size:.85rem;
+      color:var(--muted);
+    }
+    .pill b{
+      color:var(--text);
+      font-weight:800;
+      letter-spacing:-.2px;
+    }
+    .pill .kdot{
+      width:8px; height:8px; border-radius:999px;
+      background:var(--accent3);
+      box-shadow:0 0 14px rgba(6,182,212,.45);
+    }
+    .pill.green .kdot{ background:var(--accent2); box-shadow:0 0 14px rgba(34,197,94,.45); }
+    .pill.violet .kdot{ background:var(--accent); box-shadow:0 0 14px rgba(124,58,237,.40); }
 
     .hero-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top: 16px;
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:16px;
     }
-    .meta-row{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top: 14px;
-      color: var(--muted2);
-      font-size: .92rem;
-    }
-    .meta-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      font-family: var(--mono);
-    }
-    .meta-pill b{ color: var(--text); font-weight: 700; }
 
-    /* Proof tiles (recruiter candy) */
-    .proof{
-      display:grid;
-      gap: 14px;
-    }
+    /* Proof side */
+    .proof{ display:grid; gap:14px; }
     .proof-card{
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16,27,51,.86), rgba(14,22,42,.86));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      padding: 18px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(16,27,51,.86), rgba(14,22,42,.86));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow2);
+      padding:18px;
     }
     .proof-card h3{
-      font-size: 1rem;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 6px;
+      font-size:1rem;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
     }
     .badge{
-      font-family: var(--mono);
-      font-size: .78rem;
-      color: var(--muted);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      padding: 4px 8px;
-      border-radius: 999px;
+      font-family:var(--mono);
+      font-size:.78rem;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      padding:4px 8px;
+      border-radius:999px;
       white-space:nowrap;
     }
-    .proof-card p{
-      color: var(--muted);
-      font-size: .94rem;
-      margin-bottom: 12px;
-    }
+    .proof-card p{ color:var(--muted); font-size:.94rem; margin-bottom:12px; }
+
     .kpis{
       display:grid;
       grid-template-columns: repeat(2, minmax(0,1fr));
       gap:10px;
     }
     .kpi{
-      border-radius: 14px;
-      padding: 10px 10px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
     }
     .kpi .num{
-      font-size: 1.2rem;
-      font-weight: 800;
-      letter-spacing: -0.4px;
+      font-size:1.2rem;
+      font-weight:900;
+      letter-spacing:-0.4px;
     }
     .kpi .lbl{
-      font-family: var(--mono);
-      color: var(--muted2);
-      font-size: .78rem;
-      margin-top: 2px;
+      font-family:var(--mono);
+      color:var(--muted2);
+      font-size:.78rem;
+      margin-top:2px;
     }
     .kpi .num.gradient{
-      background: linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2));
-      -webkit-background-clip: text;
+      background:linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2));
+      -webkit-background-clip:text;
       background-clip:text;
-      color: transparent;
+      color:transparent;
     }
 
     /* Sections */
-    section{ padding: 52px 0; position:relative; z-index:1; }
+    section{ padding:52px 0; position:relative; z-index:1; }
     .section-head{
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
-      gap: 16px;
-      margin-bottom: 16px;
+      gap:16px;
+      margin-bottom:16px;
     }
     .section-title{
-      font-size: 1.35rem;
-      letter-spacing: -0.3px;
+      font-size:1.35rem;
+      letter-spacing:-0.3px;
     }
     .section-sub{
-      color: var(--muted);
-      font-size: .95rem;
-      max-width: 70ch;
+      color:var(--muted);
+      font-size:.95rem;
+      max-width:75ch;
     }
     .divider{
       height:1px;
-      background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.16), rgba(255,255,255,.06));
-      margin-top: 12px;
+      background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.16), rgba(255,255,255,.06));
+      margin-top:12px;
     }
 
     /* Cards grid */
     .cards{
       display:grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
     }
-    @media (max-width: 980px){ .cards{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
-    @media (max-width: 640px){ .cards{ grid-template-columns: 1fr; } }
+    @media (max-width: 980px){ .cards{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 640px){ .cards{ grid-template-columns:1fr; } }
 
     .card{
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16,27,51,.78), rgba(14,22,42,.78));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      padding: 18px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(16,27,51,.78), rgba(14,22,42,.78));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow2);
+      padding:18px;
       transition: transform .2s ease, border-color .2s ease, background .2s ease;
       position:relative;
       overflow:hidden;
     }
     .card:hover{
-      transform: translateY(-3px);
-      border-color: rgba(255,255,255,.18);
-      background: linear-gradient(180deg, rgba(16,27,51,.92), rgba(14,22,42,.86));
+      transform:translateY(-3px);
+      border-color:rgba(255,255,255,.18);
+      background:linear-gradient(180deg, rgba(16,27,51,.92), rgba(14,22,42,.86));
     }
-
     .card-top{
       display:flex;
       align-items:flex-start;
       justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap:12px;
+      margin-bottom:10px;
     }
     .card h4{
-      font-size: 1.05rem;
-      letter-spacing: -0.2px;
-      line-height: 1.2;
+      font-size:1.05rem;
+      letter-spacing:-0.2px;
+      line-height:1.2;
     }
     .stack{
-      display:flex;
-      gap: 8px;
-      flex-wrap:wrap;
-      margin-top: 10px;
+      display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;
     }
     .tag{
-      font-family: var(--mono);
-      font-size: .78rem;
-      color: var(--muted);
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
+      font-family:var(--mono);
+      font-size:.78rem;
+      color:var(--muted);
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
     }
-    .card p{
-      color: var(--muted);
-      font-size: .95rem;
-      margin-top: 6px;
-    }
+    .card p{ color:var(--muted); font-size:.95rem; margin-top:6px; }
+
     .bullets{
-      margin-top: 10px;
+      margin-top:10px;
       display:grid;
-      gap: 6px;
-      color: var(--muted);
-      font-size: .92rem;
+      gap:6px;
+      color:var(--muted);
+      font-size:.92rem;
     }
     .bullets li{
       list-style:none;
       position:relative;
-      padding-left: 16px;
+      padding-left:16px;
     }
     .bullets li:before{
       content:"";
@@ -454,52 +414,64 @@
       left:0;
       top:.55em;
       width:8px; height:8px;
-      border-radius: 99px;
-      background: rgba(255,255,255,.18);
+      border-radius:999px;
+      background:rgba(255,255,255,.18);
     }
 
     .card-actions{
       display:flex;
-      gap: 10px;
+      gap:10px;
       align-items:center;
-      margin-top: 14px;
+      margin-top:14px;
       flex-wrap:wrap;
     }
     .link{
       display:inline-flex;
       align-items:center;
       gap:8px;
-      padding: 8px 10px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      font-weight: 650;
-      font-size: .90rem;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-weight:750;
+      font-size:.90rem;
       transition:.2s ease;
     }
     .link:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.18);
-      background: rgba(255,255,255,.05);
+      transform:translateY(-1px);
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.05);
     }
-    .link.muted{
-      font-weight: 600;
-      color: var(--muted);
+    .link.muted{ font-weight:650; color:var(--muted); }
+
+    /* ✅ Mermaid container inside card */
+    .diagram{
+      margin-top:10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      overflow:hidden;
+      padding:10px;
+    }
+    .diagram .mermaid{
+      font-family: var(--mono);
+      font-size: 12px;
+    }
+    /* Make Mermaid SVG responsive */
+    .diagram svg{
+      width:100% !important;
+      height:auto !important;
     }
 
     /* Experience timeline */
-    .timeline{
-      display:grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
+    .timeline{ display:grid; gap:12px; margin-top:18px; }
     .t-item{
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16,27,51,.72), rgba(14,22,42,.72));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      padding: 16px 18px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(16,27,51,.72), rgba(14,22,42,.72));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow2);
+      padding:16px 18px;
     }
     .t-head{
       display:flex;
@@ -507,59 +479,48 @@
       gap:12px;
       align-items:flex-start;
       flex-wrap:wrap;
-      margin-bottom: 6px;
+      margin-bottom:6px;
     }
-    .t-head h4{ font-size: 1.03rem; }
-    .t-head .where{
-      color: var(--muted);
-      font-size: .92rem;
-      margin-top: 2px;
-    }
+    .t-head h4{ font-size:1.03rem; }
+    .t-head .where{ color:var(--muted); font-size:.92rem; margin-top:2px; }
     .t-head .date{
-      font-family: var(--mono);
-      color: var(--muted2);
-      font-size: .85rem;
-      border: 1px solid rgba(255,255,255,.10);
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
+      font-family:var(--mono);
+      color:var(--muted2);
+      font-size:.85rem;
+      border:1px solid rgba(255,255,255,.10);
+      padding:4px 8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.03);
       white-space:nowrap;
     }
 
     /* Skills matrix */
     .skills{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:18px;
     }
-    @media (max-width: 860px){ .skills{ grid-template-columns: 1fr; } }
+    @media (max-width:860px){ .skills{ grid-template-columns:1fr; } }
     .skillbox{
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16,27,51,.72), rgba(14,22,42,.72));
-      border: 1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow2);
-      padding: 16px 18px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(16,27,51,.72), rgba(14,22,42,.72));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow:var(--shadow2);
+      padding:16px 18px;
     }
     .skillbox h4{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      font-size: 1.03rem;
-      margin-bottom: 10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      font-size:1.03rem;
+      margin-bottom:10px;
     }
-    .chips{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; }
 
     /* Footer */
     footer{
-      padding: 44px 0 54px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      margin-top: 10px;
+      padding:44px 0 54px;
+      border-top:1px solid rgba(255,255,255,.08);
+      margin-top:10px;
       position:relative;
       z-index:1;
     }
@@ -567,63 +528,56 @@
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
-      gap: 16px;
+      gap:16px;
       flex-wrap:wrap;
     }
-    .foot p{
-      color: var(--muted);
-      max-width: 70ch;
-      font-size: .95rem;
-    }
+    .foot p{ color:var(--muted); max-width:70ch; font-size:.95rem; }
     .status{
       display:inline-flex;
       align-items:center;
       gap:10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(34,197,94,.35);
-      background: rgba(34,197,94,.06);
-      font-family: var(--mono);
-      color: var(--muted);
-      margin-top: 12px;
-      width: fit-content;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(34,197,94,.35);
+      background:rgba(34,197,94,.06);
+      font-family:var(--mono);
+      color:var(--muted);
+      margin-top:12px;
+      width:fit-content;
     }
     .status .ok{
-      width:9px; height:9px; border-radius: 99px;
-      background: var(--accent2);
-      box-shadow: 0 0 14px rgba(34,197,94,.55);
+      width:9px; height:9px; border-radius:999px;
+      background:var(--accent2);
+      box-shadow:0 0 14px rgba(34,197,94,.55);
     }
 
     /* Toast */
     .toast{
-      position: fixed;
-      bottom: 18px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
+      position:fixed;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%) translateY(20px);
       opacity:0;
       pointer-events:none;
-      z-index: 100;
-      border-radius: 14px;
-      padding: 10px 12px;
-      background: rgba(16,27,51,.92);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: var(--shadow2);
-      color: var(--text);
-      font-size: .92rem;
+      z-index:100;
+      border-radius:14px;
+      padding:10px 12px;
+      background:rgba(16,27,51,.92);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow2);
+      color:var(--text);
+      font-size:.92rem;
       display:flex;
       align-items:center;
       gap:10px;
-      transition: .25s ease;
-      backdrop-filter: blur(10px);
+      transition:.25s ease;
+      backdrop-filter:blur(10px);
     }
-    .toast.show{
-      opacity:1;
-      transform: translateX(-50%) translateY(0);
-    }
+    .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
     .toast .mini{
-      width: 8px; height: 8px; border-radius: 99px;
-      background: var(--accent3);
-      box-shadow: 0 0 14px rgba(6,182,212,.45);
+      width:8px; height:8px; border-radius:999px;
+      background:var(--accent3);
+      box-shadow:0 0 14px rgba(6,182,212,.45);
     }
 
     /* Reduced motion */
@@ -632,6 +586,83 @@
       .pulse{ animation:none; }
       .btn:hover, .card:hover, .link:hover{ transform:none; }
       .toast{ transition:none; }
+    }
+
+    /* ========================================= */
+    /* ✅ MOBILE NAVIGATION FIX */
+    /* ========================================= */
+    
+    .menu-btn {
+      display: none; /* Hidden on desktop */
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      /* 1. Show the hamburger button */
+      .menu-btn {
+        display: flex;
+      }
+
+      /* 2. Style the dropdown menu (Hidden by default) */
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(7, 10, 16, 0.98);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 15px;
+        
+        /* Animation setup */
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+        transition: 0.2s ease;
+        
+        /* IMPORTANT: Override the previous display:none */
+        display: flex !important; 
+      }
+
+      /* 3. The "Open" State */
+      .nav-links.open {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: all;
+      }
+
+      /* 4. Fix the links inside the menu */
+      .nav-links a:not(.btn) {
+        display: block !important; /* Force show links */
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.03);
+        text-align: center;
+        width: 100%;
+      }
+
+      /* 5. Fix the buttons container */
+      .nav-cta {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+      }
+      .nav-cta .btn {
+        width: 100%;
+        display: flex !important; /* Force show buttons */
+      }
+      
+      /* Hide the 'Backend...' subtitle in logo on very small screens to save space */
+      .brand span { display: none; }
     }
   </style>
 </head>
@@ -647,26 +678,32 @@
           <div class="logo" aria-hidden="true"></div>
           <div>
             <strong>Sushov Karmacharya</strong>
-            <span>Backend • Distributed Systems • Reliability</span>
+            <span>Backend • Distributed Systems</span>
           </div>
         </a>
 
-        <div class="nav-links" aria-label="Primary">
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#skills">Skills</a>
-          <a href="#leadership">Leadership</a>
-          <a href="#contact">Contact</a>
+        <button class="menu-btn" aria-label="Toggle menu" onclick="toggleMenu()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#projects" onclick="toggleMenu()">Projects</a>
+          <a href="#experience" onclick="toggleMenu()">Experience</a>
+          <a href="#skills" onclick="toggleMenu()">Skills</a>
+          <a href="#leadership" onclick="toggleMenu()">Leadership</a>
+          <a href="#contact" onclick="toggleMenu()">Contact</a>
 
           <div class="nav-cta">
+            <button class="btn" id="copyEmailBtn" title="Copy email">
+              <span class="dot" aria-hidden="true"></span>
+              Copy
+            </button>
+
             <a class="btn primary" href="mailto:karmacharya.sushov@gmail.com">
-              <span class="icon" aria-hidden="true">
-                <!-- mail icon -->
-                <svg viewBox="0 0 24 24" fill="none" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M4 6h16v12H4V6Z" stroke="white" opacity=".9" stroke-width="2" />
-                  <path d="m4 7 8 6 8-6" stroke="white" opacity=".9" stroke-width="2" />
-                </svg>
-              </span>
               Email me
             </a>
           </div>
@@ -686,63 +723,47 @@
           </div>
 
           <h1>
-            I build <span style="background:linear-gradient(90deg,var(--accent),var(--accent3)); -webkit-background-clip:text; background-clip:text; color:transparent;">reliable backend systems</span>
-            that stay correct under retries, traffic spikes, and failures.
+            I build
+            <span style="background:linear-gradient(90deg,var(--accent),var(--accent3)); -webkit-background-clip:text; background-clip:text; color:transparent;">
+              infrastructure-grade backends
+            </span>
+            that stay correct under retries and stay debuggable in production.
           </h1>
 
           <p class="subtitle">
-            5+ years owning production services and shipping end-to-end systems:
-            <strong>idempotency, concurrency, caching, observability</strong>, and
-            cloud infrastructure (Kubernetes + Terraform).
+            6–7+ years owning production services and shipping end-to-end systems:
+            <strong>idempotency, concurrency, caching, and observability</strong> —
+            plus cloud infrastructure (Kubernetes + Terraform).
           </p>
 
-          <div class="meta-row" role="list" aria-label="Quick facts">
-            <div class="meta-pill" role="listitem"><b>Focus:</b> HA Distributed Systems</div>
-            <div class="meta-pill" role="listitem"><b>Strength:</b> Debugging + Reliability</div>
-            <div class="meta-pill" role="listitem"><b>Track:</b> OMSCS Systems</div>
+          <!-- ✅ Static, instant-scan keywords -->
+          <div class="keyword-bar" aria-label="Keyword highlights">
+            <div class="pill violet"><span class="kdot" aria-hidden="true"></span><b>Java</b> / <b>Python</b> / <b>C++</b></div>
+            <div class="pill green"><span class="kdot" aria-hidden="true"></span><b>Kubernetes</b> + <b>Terraform</b></div>
+            <div class="pill"><span class="kdot" aria-hidden="true"></span><b>Redis</b> + <b>Postgres</b> + <b>SQL</b></div>
+            <!-- <div class="pill"><span class="kdot" aria-hidden="true"></span><b>Prometheus</b> / <b>Grafana</b></div> -->
           </div>
 
           <div class="hero-actions">
-            <!-- Replace href with your resume link -->
-            <a class="btn" href="#" id="resumeBtn">
-              <span class="icon" aria-hidden="true">
-                <!-- doc icon -->
-                <svg viewBox="0 0 24 24" fill="none" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 3h7l3 3v15H7V3Z" stroke="white" opacity=".9" stroke-width="2"/>
-                  <path d="M14 3v4h4" stroke="white" opacity=".9" stroke-width="2"/>
-                </svg>
-              </span>
-              Download resume
-            </a>
+            <!-- Replace with your resume file path/link -->
+            <!-- <a class="btn" href="#" id="resumeBtn">Download resume</a> -->
 
-            <a class="btn" href="https://github.com/sushov" target="_blank" rel="noreferrer">
-              <span class="icon" aria-hidden="true">
-                <!-- github icon -->
-                <svg viewBox="0 0 24 24" fill="none" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 2C6.477 2 2 6.58 2 12.234c0 4.52 2.865 8.356 6.839 9.709.5.096.682-.222.682-.494 0-.244-.009-.892-.014-1.75-2.782.618-3.369-1.37-3.369-1.37-.455-1.183-1.11-1.498-1.11-1.498-.907-.64.069-.627.069-.627 1.003.071 1.531 1.055 1.531 1.055.892 1.563 2.341 1.112 2.91.85.091-.666.349-1.112.635-1.368-2.22-.258-4.555-1.138-4.555-5.065 0-1.118.389-2.032 1.029-2.748-.103-.258-.446-1.296.098-2.701 0 0 .84-.275 2.75 1.05A9.35 9.35 0 0 1 12 6.844c.85.004 1.705.118 2.504.345 1.909-1.325 2.748-1.05 2.748-1.05.545 1.405.203 2.443.1 2.701.64.716 1.028 1.63 1.028 2.748 0 3.936-2.338 4.804-4.566 5.057.359.316.678.939.678 1.893 0 1.366-.012 2.468-.012 2.805 0 .274.18.594.688.493C19.138 20.586 22 16.753 22 12.234 22 6.58 17.523 2 12 2Z" fill="white" opacity=".9"/>
-                </svg>
-              </span>
-              GitHub
-            </a>
+            <a class="btn" href="https://github.com/sushov" target="_blank" rel="noreferrer">GitHub</a>
 
-            <a class="btn" href="https://www.linkedin.com/in/sushov-karmacharya/" target="_blank" rel="noreferrer">
-              <span class="icon" aria-hidden="true">
-                <!-- linkedin icon -->
-                <svg viewBox="0 0 24 24" fill="none" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6.94 6.5A2.44 2.44 0 1 1 6.94 1.6a2.44 2.44 0 0 1 0 4.9Z" fill="white" opacity=".9"/>
-                  <path d="M2.8 22.4h4.2V8.1H2.8v14.3Z" fill="white" opacity=".9"/>
-                  <path d="M9.2 8.1h4v2h.06c.56-1.07 1.94-2.2 4-2.2 4.27 0 5.06 2.9 5.06 6.68v7.82h-4.2v-6.94c0-1.66-.03-3.79-2.25-3.79-2.25 0-2.6 1.8-2.6 3.67v7.06H9.2V8.1Z" fill="white" opacity=".9"/>
-                </svg>
-              </span>
-              LinkedIn
-            </a>
+            <a class="btn" href="https://www.linkedin.com/in/sushov-karmacharya/" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
+
+          <!-- ✅ Added: deep-link proof CTA -->
+          <!-- <div style="margin-top:14px; color:var(--muted); font-size:.92rem;"> -->
+            <!-- Recruiter-friendly proof: -->
+            <!-- <a class="link muted" href="#projects" style="margin-left:8px;">Deep links to exact files</a> -->
+          <!-- </div> -->
         </div>
 
         <div class="proof">
           <div class="proof-card">
-            <h3>Why recruiters short-list this profile <span class="badge">fast scan</span></h3>
-            <p>Production ownership + reliability wins. Not just “built features” — improved uptime, MTTR, and latency.</p>
+            <h3>Production impact (quick proof) <span class="badge">scan</span></h3>
+            <p>Not just “built features” — reduced downtime, MTTR, and p99 latency on real systems.</p>
             <div class="kpis">
               <div class="kpi">
                 <div class="num gradient">50K+</div>
@@ -761,6 +782,13 @@
                 <div class="lbl">messages/min (load-tested)</div>
               </div>
             </div>
+
+            <!-- ✅ Add proof links here later -->
+            <!-- <div class="card-actions" style="margin-top:12px;"> -->
+              <!-- <a class="link muted" href="#" onclick="showToast('Add: /diagrams, /benchmarks, /postmortems links'); return false;">Diagrams</a> -->
+              <!-- <a class="link muted" href="#" onclick="showToast('Add a benchmark screenshot or README section'); return false;">Benchmarks</a> -->
+              <!-- <a class="link muted" href="#" onclick="showToast('Add a short incident writeup / runbook sample'); return false;">Incident notes</a> -->
+            <!-- </div> -->
           </div>
 
           <div class="proof-card">
@@ -783,96 +811,139 @@
     </div>
   </header>
 
-  <!-- PROJECTS -->
-  <section id="projects">
+<section id="projects">
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="section-title">Selected Projects</div>
-          <div class="section-sub">
-            Each project is written like an interview answer: the problem, the system design, and the measurable outcome.
-          </div>
+          <div class="section-title">02. Deployed Infrastructure & Systems</div>
           <div class="divider"></div>
-        </div>
-        <div class="stack" aria-label="Filters (visual only)">
-          <span class="tag">Distributed Systems</span>
-          <span class="tag">Reliability</span>
-          <span class="tag">Infra</span>
         </div>
       </div>
 
       <div class="cards">
+
+        <article class="card">
+          <div class="card-top">
+            <div>
+              <h4>Cloud Resume Challenge (GCP)</h4>
+              <div class="stack">
+                <span class="tag">GCP</span><span class="tag">Cloud Functions</span><span class="tag">Terraform</span><span class="tag">CI/CD</span>
+              </div>
+            </div>
+            <span class="badge">live</span>
+          </div>
+
+          <div class="diagram">
+            <div class="mermaid">
+graph LR
+    User[Visitor] -->|HTTPS| CDN[CDN/LB]
+    CDN -->|Get Site| Bucket[GCS Bucket]
+    CDN -->|API Call| func[Cloud Function]
+    func -->|Update| DB[(Firestore)]
+    Repo[GitHub] -->|Push| Build[Cloud Build]
+    Build -->|Deploy| func & Bucket
+    style func fill:#4285F4,stroke:#fff,color:#fff
+    style DB fill:#FFCA28,stroke:#333,color:#000
+            </div>
+          </div>
+
+          <p>Full-stack serverless architecture handling real-time visitor counting. Zero manual deployments permitted.</p>
+
+          <ul class="bullets">
+            <li><strong>Infrastructure as Code:</strong> Entire GCP stack (Firestore, Functions, IAM) provisioned via Terraform.</li>
+            <li><strong>CI/CD Pipeline:</strong> GitHub Actions automatically runs Python tests and triggers Cloud Build for deployment.</li>
+            <li><strong>Backend Logic:</strong> Python Cloud Function implementing atomic database increments and CORS handling.</li>
+          </ul>
+
+          <!-- <div class="card-actions"> -->
+            <!-- <a class="link" href="https://github.com/sushov/cloud-resume-challenge" target="_blank" rel="noreferrer"> -->
+              <!-- View Architecture (Repo) -->
+            <!-- </a> -->
+            <!-- <a class="link muted" href="https://sushov.com" target="_blank" rel="noreferrer"> -->
+              <!-- Live Demo -->
+            <!-- </a> -->
+          <!-- </div> -->
+        </article>
+
         <article class="card">
           <div class="card-top">
             <div>
               <h4>Idempotent Transaction Processor</h4>
               <div class="stack">
-                <span class="tag">Python</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">Retries</span>
+                <span class="tag">Python</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">Correctness</span>
               </div>
             </div>
-            <span class="badge">correctness</span>
+            <span class="badge">backend</span>
           </div>
-          <p>
-            Prevents duplicate processing during retries and partial failures — designed for billing / financial correctness.
-          </p>
+
+          <div class="diagram">
+            <div class="mermaid">
+graph LR
+  req[API Request] -->|Key| lock{Redis Lock}
+  lock -->|Exists| cached[Return 200]
+  lock -->|New| process[Process Payment]
+  process --> db[(Postgres)]
+  process -->|Success| cache_result[Cache Result]
+  style lock fill:#b93f50,stroke:#fff,stroke-width:2px
+            </div>
+          </div>
+
+          <p>Prevents double-billing during network retries using distributed locking and idempotency keys.</p>
+
           <ul class="bullets">
-            <li>Exactly-once effects via idempotency keys + dedupe windows</li>
-            <li>Redis locks to enforce safe concurrency under bursty traffic</li>
-            <li>Observability: metrics + structured logs for incident triage</li>
+            <li>Guarantees <strong>exactly-once</strong> side effects for at-least-once message delivery.</li>
+            <li>Implemented atomic Redis `SETNX` locks with TTL to prevent deadlocks during crash loops.</li>
+            <li>Optimized for high-concurrency financial transaction throughput.</li>
           </ul>
-          <div class="card-actions">
-            <a class="link" href="https://github.com/sushov" target="_blank" rel="noreferrer">Repo</a>
-            <a class="link muted" href="#" onclick="openCaseStudy('tx'); return false;">Case study</a>
-          </div>
+
+          <!-- <div class="card-actions"> -->
+            <!-- <a class="link" href="https://github.com/sushov/YOUR-REPO/blob/main/processor.py" target="_blank" rel="noreferrer"> -->
+              <!-- View Locking Logic -->
+            <!-- </a> -->
+          <!-- </div> -->
         </article>
 
         <article class="card">
           <div class="card-top">
             <div>
-              <h4>Concurrent Messaging Framework</h4>
+              <h4>Concurrent Messaging Engine</h4>
               <div class="stack">
-                <span class="tag">C++</span><span class="tag">Locks</span><span class="tag">Condition Vars</span><span class="tag">Profiling</span>
+                <span class="tag">C++</span><span class="tag">Threads</span><span class="tag">Systems</span><span class="tag">Profiling</span>
               </div>
             </div>
-            <span class="badge">systems</span>
+            <span class="badge">performance</span>
           </div>
-          <p>
-            Multithreaded messaging engine exploring ordering, contention, and throughput under load.
-          </p>
+
+          <div class="diagram">
+            <div class="mermaid">
+sequenceDiagram
+  participant Client
+  participant Queue
+  participant Worker
+  Client->>+Queue: Publish (Non-Blocking)
+  loop Worker Thread
+      Queue->>+Worker: Dequeue (Locked)
+      Worker->>Worker: Batch Process
+  end
+  Worker-->>-Client: Async Ack
+            </div>
+          </div>
+
+          <p>High-throughput messaging framework exploring thread safety, contention, and memory models.</p>
+
           <ul class="bullets">
-            <li>Thread-safe queues + producer/consumer design</li>
-            <li>Load-tested to 200K+ msgs/min (adjust to your actual)</li>
-            <li>Identified bottlenecks via profiling; improved dispatch loop</li>
+            <li>Implemented thread-safe blocking queues using `std::mutex` and `std::condition_variable`.</li>
+            <li>Profiled CPU contention to tune worker thread pool size for optimal throughput.</li>
+            <li>Handled graceful shutdown and memory cleanup to prevent leaks.</li>
           </ul>
-          <div class="card-actions">
-            <a class="link" href="https://github.com/sushov" target="_blank" rel="noreferrer">Repo</a>
-            <a class="link muted" href="#" onclick="openCaseStudy('mq'); return false;">Case study</a>
-          </div>
+
+          <!-- <div class="card-actions"> -->
+            <!-- <a class="link" href="https://github.com/sushov/YOUR-REPO/blob/main/queue.cpp" target="_blank" rel="noreferrer"> -->
+              <!-- View Threading Code -->
+            <!-- </a> -->
+          <!-- </div> -->
         </article>
 
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Kubernetes Self-Healing Cluster</h4>
-              <div class="stack">
-                <span class="tag">Terraform</span><span class="tag">Kubernetes</span><span class="tag">AWS</span><span class="tag">Probes</span>
-              </div>
-            </div>
-            <span class="badge">infra</span>
-          </div>
-          <p>
-            Provisioned reproducible infra and validated auto-recovery with readiness/liveness probes.
-          </p>
-          <ul class="bullets">
-            <li>Simulated failure scenarios (pod kill, bad health endpoints)</li>
-            <li>Verified recovery without manual intervention</li>
-            <li>Designed for safe rollbacks + reproducible environments</li>
-          </ul>
-          <div class="card-actions">
-            <a class="link" href="https://github.com/sushov" target="_blank" rel="noreferrer">Repo</a>
-            <a class="link muted" href="#" onclick="openCaseStudy('k8s'); return false;">Case study</a>
-          </div>
-        </article>
       </div>
     </div>
   </section>
@@ -884,7 +955,7 @@
         <div>
           <div class="section-title">Experience</div>
           <div class="section-sub">
-            I’ve owned production backend services end-to-end: design, deployment, monitoring, on-call, and incident response.
+            I’ve owned production backend services end-to-end: design, deployment, monitoring, and incident response.
           </div>
           <div class="divider"></div>
         </div>
@@ -900,9 +971,9 @@
             <div class="date">Aug 2019 – Sep 2022</div>
           </div>
           <ul class="bullets">
-            <li>Reduced peak latency ~40% using Redis caching + SQL tuning</li>
-            <li>Improved availability by addressing concurrency/retry failure modes (~35% less downtime)</li>
-            <li>Built metrics/logging to speed incident triage and reduce MTTR (~30%)</li>
+            <li>Reduced peak p99 latency ~40% using Redis caching + SQL tuning</li>
+            <li>Improved availability ~35% by fixing concurrency + retry failure modes</li>
+            <li>Built metrics/logging + runbooks to reduce MTTR ~30%</li>
           </ul>
           <div class="stack">
             <span class="tag">Microservices</span><span class="tag">Redis</span><span class="tag">PostgreSQL/MySQL</span><span class="tag">CI/CD</span><span class="tag">Observability</span>
@@ -919,8 +990,8 @@
           </div>
           <ul class="bullets">
             <li>Owned full SDLC: architecture → deploy → monitor → maintain</li>
-            <li>Designed async workflows + service isolation for peak load reliability</li>
-            <li>Introduced containerized deploys to improve rollback safety and release velocity</li>
+            <li>Designed async workflows to decouple ingestion from downstream processing</li>
+            <li>Improved rollout safety using containerized deployments + rollback strategy</li>
           </ul>
           <div class="stack">
             <span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span>
@@ -937,7 +1008,7 @@
           </div>
           <ul class="bullets">
             <li>Improved throughput ~40% via schema refactors, indexing, and query tuning</li>
-            <li>Built robust error-handling to reduce recurring production failures (~25%)</li>
+            <li>Built robust error-handling pipelines reducing recurring failures ~25%</li>
           </ul>
           <div class="stack">
             <span class="tag">SQL</span><span class="tag">Schema design</span><span class="tag">Performance</span>
@@ -953,7 +1024,7 @@
             <div class="date">2023 – Present</div>
           </div>
           <ul class="bullets">
-            <li>Hands-on labs: concurrency, distributed service patterns, failure recovery</li>
+            <li>Hands-on labs: concurrency, distributed patterns, failure recovery</li>
             <li>Built local cloud-native labs using Kubernetes + Terraform</li>
           </ul>
           <div class="stack">
@@ -971,7 +1042,7 @@
         <div>
           <div class="section-title">Skills</div>
           <div class="section-sub">
-            Clean, role-relevant keywords — not a giant list. Focused on backend systems, infra, and observability.
+            Focused keywords that match infra/backend roles (Discord/Orb-style): reliability, concurrency, observability.
           </div>
           <div class="divider"></div>
         </div>
@@ -979,10 +1050,7 @@
 
       <div class="skills">
         <div class="skillbox">
-          <h4>
-            Backend & Distributed Systems
-            <span class="badge">core</span>
-          </h4>
+          <h4>Backend & Distributed Systems <span class="badge">core</span></h4>
           <div class="chips">
             <span class="tag">Concurrency</span>
             <span class="tag">Idempotency</span>
@@ -996,10 +1064,7 @@
         </div>
 
         <div class="skillbox">
-          <h4>
-            Cloud, Infra & Operations
-            <span class="badge">infra</span>
-          </h4>
+          <h4>Cloud, Infra & Ops <span class="badge">infra</span></h4>
           <div class="chips">
             <span class="tag">Kubernetes</span>
             <span class="tag">Terraform</span>
@@ -1007,15 +1072,13 @@
             <span class="tag">AWS (EC2/S3/IAM)</span>
             <span class="tag">CI/CD</span>
             <span class="tag">Incident response</span>
+            <span class="tag">Runbooks</span>
             <span class="tag">SLO mindset</span>
           </div>
         </div>
 
         <div class="skillbox">
-          <h4>
-            Observability
-            <span class="badge">debug</span>
-          </h4>
+          <h4>Observability <span class="badge">debug</span></h4>
           <div class="chips">
             <span class="tag">Metrics</span>
             <span class="tag">Logging</span>
@@ -1028,10 +1091,7 @@
         </div>
 
         <div class="skillbox">
-          <h4>
-            Languages & Data
-            <span class="badge">tools</span>
-          </h4>
+          <h4>Languages & Data <span class="badge">tools</span></h4>
           <div class="chips">
             <span class="tag">Java</span>
             <span class="tag">Python</span>
@@ -1054,7 +1114,7 @@
         <div>
           <div class="section-title">Leadership & Mentorship</div>
           <div class="section-sub">
-            This is a differentiator: you’ve led teams, shipped for customers, and mentored learners — strong “ownership” signal.
+            Ownership signal: co-founder delivery + Code Ninjas center leadership.
           </div>
           <div class="divider"></div>
         </div>
@@ -1065,18 +1125,14 @@
           <div class="card-top">
             <div>
               <h4>Center Director / Instructor — Code Ninjas</h4>
-              <div class="stack">
-                <span class="tag">Mentorship</span><span class="tag">Operations</span><span class="tag">Teaching</span>
-              </div>
+              <div class="stack"><span class="tag">Mentorship</span><span class="tag">Operations</span><span class="tag">Teaching</span></div>
             </div>
             <span class="badge">leadership</span>
           </div>
-          <p>
-            Lead day-to-day operations and mentor students in programming, debugging, and project execution.
-          </p>
+          <p>Lead operations and mentor learners in programming, debugging, and project execution.</p>
           <ul class="bullets">
-            <li>Managed scheduling, staff onboarding, and consistent teaching standards</li>
-            <li>Helped learners reach early “aha” moments through structured guidance</li>
+            <li>Standardized onboarding + improved teaching consistency</li>
+            <li>Helped students build real projects (Unity / JS / Python)</li>
           </ul>
         </article>
 
@@ -1084,37 +1140,29 @@
           <div class="card-top">
             <div>
               <h4>Co-Founder — Startup Delivery</h4>
-              <div class="stack">
-                <span class="tag">0→1</span><span class="tag">Delivery</span><span class="tag">Customer-facing</span>
-              </div>
+              <div class="stack"><span class="tag">0→1</span><span class="tag">Customers</span><span class="tag">On-call</span></div>
             </div>
             <span class="badge">ownership</span>
           </div>
-          <p>
-            Built and operated production systems under real constraints: time, scale, outages, and customer expectations.
-          </p>
+          <p>Built and operated systems under real constraints: traffic spikes, outages, and customer expectations.</p>
           <ul class="bullets">
             <li>End-to-end responsibility: architecture → deploy → support</li>
-            <li>Built playbooks and monitoring to reduce incident blast radius</li>
+            <li>Created monitoring + playbooks to reduce blast radius</li>
           </ul>
         </article>
 
         <article class="card">
           <div class="card-top">
             <div>
-              <h4>Systems Learner — Always Improving</h4>
-              <div class="stack">
-                <span class="tag">OMSCS</span><span class="tag">Labs</span><span class="tag">Design</span>
-              </div>
+              <h4>Systems learning (applied)</h4>
+              <div class="stack"><span class="tag">OMSCS</span><span class="tag">Labs</span><span class="tag">Reliability</span></div>
             </div>
             <span class="badge">growth</span>
           </div>
-          <p>
-            I keep sharpening fundamentals with real labs and projects: concurrency, reliability, infra, and debugging.
-          </p>
+          <p>I build small, demonstrable labs that map directly to platform interviews: failure recovery, throughput, and debugging.</p>
           <ul class="bullets">
-            <li>Build small, demonstrable labs (K8s, Terraform, messaging)</li>
-            <li>Translate theory into practical engineering decisions</li>
+            <li>K8s + Terraform drills (self-healing + reproducibility)</li>
+            <li>Concurrency + message passing experiments</li>
           </ul>
         </article>
       </div>
@@ -1127,10 +1175,6 @@
       <div class="section-head">
         <div>
           <div class="section-title">Contact</div>
-          <div class="section-sub">
-            If you’re hiring for backend / infra roles: send the job link + what you want to test (systems, coding, reliability).
-            I’ll respond fast.
-          </div>
           <div class="divider"></div>
         </div>
       </div>
@@ -1140,13 +1184,11 @@
           <div class="card-top">
             <div>
               <h4>Fastest way</h4>
-              <div class="stack"><span class="tag">Email</span><span class="tag">Response-first</span></div>
+              <div class="stack"><span class="tag">Email</span><span class="tag">Direct</span></div>
             </div>
-            <span class="badge">direct</span>
+            <span class="badge">contact</span>
           </div>
-          <p style="font-family:var(--mono); font-size:.98rem; margin-top:6px;">
-            karmacharya.sushov@gmail.com
-          </p>
+          <p style="font-family:var(--mono); font-size:.98rem; margin-top:6px;">karmacharya.sushov@gmail.com</p>
           <div class="card-actions">
             <a class="link" href="mailto:karmacharya.sushov@gmail.com">Email</a>
             <button class="link muted" onclick="copyEmail(); return false;">Copy</button>
@@ -1172,14 +1214,11 @@
           <div class="card-top">
             <div>
               <h4>What I’m looking for</h4>
-              <div class="stack"><span class="tag">Backend</span><span class="tag">Infra</span><span class="tag">Reliability</span></div>
+              <div class="stack"><span class="tag">Backend</span><span class="tag">Platform</span><span class="tag">Infra</span></div>
             </div>
             <span class="badge">roles</span>
           </div>
-          <p>
-            Backend / Platform / Infra roles where reliability and ownership matter:
-            correctness, latency, observability, and safe deployments.
-          </p>
+          <p>Backend / Platform / Infra roles where reliability and ownership matter: correctness, latency, observability, safe deployments.</p>
         </article>
       </div>
     </div>
@@ -1191,16 +1230,14 @@
       <div class="foot">
         <div>
           <strong style="font-size:1rem;">Sushov Karmacharya</strong>
-          <p>
-            Backend & Distributed Systems Engineer. Correctness-first design, strong reliability instincts, and production ownership.
-          </p>
+          <p>Backend & Distributed Systems Engineer. Correctness-first design, reliability instincts, production ownership.</p>
           <div class="status" aria-label="System status">
             <span class="ok" aria-hidden="true"></span>
             System operational • designed for failure • observed in production
           </div>
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:10px; min-width: 240px;">
+        <div style="display:flex; flex-direction:column; gap:10px; min-width:240px;">
           <a class="btn primary" href="mailto:karmacharya.sushov@gmail.com">Let’s talk</a>
           <button class="btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to top</button>
         </div>
@@ -1216,7 +1253,7 @@
   <script>
     // ======== CONFIG (edit these) ========
     const EMAIL = "karmacharya.sushov@gmail.com";
-    const RESUME_URL = "#"; // <-- put your resume pdf link (e.g. ./Sushov_Resume.pdf)
+    const RESUME_URL = "#"; // e.g. "./Sushov_Resume.pdf" or hosted link
     // ====================================
 
     const resumeBtn = document.getElementById("resumeBtn");
@@ -1228,7 +1265,7 @@
     resumeBtn.addEventListener("click", (e) => {
       if (RESUME_URL === "#") {
         e.preventDefault();
-        showToast("Add your resume link (RESUME_URL) in the JS config.");
+        showToast("Set RESUME_URL in JS config (bottom of file).");
       }
     });
 
@@ -1240,13 +1277,13 @@
       clearTimeout(showToast._t);
       showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
     }
+    window.showToast = showToast;
 
     async function copyEmail(){
       try{
         await navigator.clipboard.writeText(EMAIL);
         showToast("Email copied to clipboard.");
       }catch(e){
-        // Fallback
         const tmp = document.createElement("textarea");
         tmp.value = EMAIL;
         document.body.appendChild(tmp);
@@ -1256,72 +1293,11 @@
         showToast("Email copied.");
       }
     }
-
-    // Simple case study modals (lightweight alert-style)
-    function openCaseStudy(id){
-      const map = {
-        tx: {
-          title: "Idempotent Transaction Processor — Case Study",
-          body:
-`Problem:
-- Retries + partial failures can cause duplicate processing (billing correctness risk).
-
-Design:
-- Idempotency keys stored with dedupe window
-- Redis locks to serialize conflicting operations
-- Safe retry semantics + reconciliation checks
-- Metrics/logging to trace failures end-to-end
-
-What to add next:
-- DLQ + replay tooling
-- Chaos tests for retry storms
-- Load test report in README`
-        },
-        mq: {
-          title: "Concurrent Messaging Framework — Case Study",
-          body:
-`Goal:
-- Explore ordering + throughput under multi-threaded contention.
-
-Design:
-- Producer/consumer queues
-- Locks + condition variables
-- Backpressure + bounded queues
-
-Results:
-- Load-tested throughput (set your real number in the site)
-- Profiling to reduce contention in dispatch loop
-
-What to add next:
-- Benchmarks + flamegraph screenshot
-- Optional: lock-free queue experiment`
-        },
-        k8s: {
-          title: "Kubernetes Self-Healing Cluster — Case Study",
-          body:
-`Goal:
-- Prove "self-healing" behavior with real failure simulations.
-
-Design:
-- Terraform-provisioned cluster + reproducible config
-- Readiness/liveness probes
-- Failure drills: kill pods, break health endpoints
-
-What to add next:
-- HPA demo + cost notes
-- Observability dashboard screenshots
-- GitHub Actions pipeline for deploy`
-        }
-      };
-
-      const item = map[id];
-      if(!item){ return; }
-      // Keep it clean: use a built-in modal style with confirm
-      const text = `${item.title}\n\n${item.body}`;
-      alert(text);
+    // Mobile Menu Toggle
+    function toggleMenu() {
+      const links = document.getElementById('navLinks');
+      links.classList.toggle('open');
     }
-    window.openCaseStudy = openCaseStudy;
   </script>
 </body>
 </html>
-
