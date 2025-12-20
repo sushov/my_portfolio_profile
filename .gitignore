@@ -1,0 +1,7 @@
+```text
+# .gitignore
+.terraform/
+*.tfstate
+*.tfstate.backup
+.DS_Store
+*.tfvars
