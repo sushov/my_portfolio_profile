@@ -1,921 +1,358 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sushov Karmacharya | Backend & Distributed Systems Engineer</title>
-  <link rel="icon" type="image/svg+xml"
-  href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%237C3AED"/><stop offset="1" stop-color="%2306B6D4"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(%23g)"/><text x="64" y="78" font-size="56" text-anchor="middle" fill="white" font-family="SFMono-Regular,Menlo,Consolas,monospace">SK</text></svg>'>
-  
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sushov Karmacharya | Backend & Distributed Systems Engineer</title>
 
-  <!-- ✅ Mermaid (code-as-diagrams) -->
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: "dark",
-      securityLevel: "loose",
-      themeVariables: {
-        fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, monospace",
-        primaryColor: "#101B33",
-        primaryTextColor: "#E9EEFF",
-        primaryBorderColor: "rgba(255,255,255,.14)",
-        lineColor: "rgba(255,255,255,.30)",
-        secondaryColor: "#0E162A",
-        tertiaryColor: "#0A1020",
-        noteBkgColor: "#0E162A",
-        noteTextColor: "#E9EEFF",
-      },
-      flowchart: { curve: "basis" },
-    });
-  </script>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="%237C3AED"/><stop offset="1" stop-color="%2306B6D4"/></linearGradient></defs><rect width="128" height="128" rx="28" fill="url(%23g)"/><text x="64" y="78" font-size="56" text-anchor="middle" fill="white" font-family="SFMono-Regular,Menlo,Consolas,monospace">SK</text></svg>'
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
 
-  <style>
-    :root{
-      --bg:#070A10;
-      --bg2:#0A1020;
-      --card:#0E162A;
-      --card2:#101B33;
-      --stroke:rgba(255,255,255,.10);
-      --stroke2:rgba(255,255,255,.16);
-      --text:#E9EEFF;
-      --muted:#A9B4D0;
-      --muted2:#7D89AA;
+  <body>
+    <div class="grid-bg"></div>
 
-      --accent:#7C3AED;    /* violet */
-      --accent2:#22C55E;   /* green */
-      --accent3:#06B6D4;   /* cyan */
-      --warn:#F59E0B;
-      --danger:#EF4444;
+    <!-- NAV -->
+    <div class="nav">
+      <div class="container">
+        <div class="nav-inner">
+          <a class="brand" href="#top" aria-label="Home">
+            <div class="logo" aria-hidden="true"></div>
+            <div>
+              <strong>Sushov Karmacharya</strong>
+              <span>Backend • Distributed Systems</span>
+            </div>
+          </a>
 
-      --shadow:0 18px 50px rgba(0,0,0,.55);
-      --shadow2:0 10px 30px rgba(0,0,0,.35);
-      --radius:18px;
-      --radius2:14px;
+          <button
+            class="menu-btn"
+            aria-label="Toggle menu"
+            onclick="toggleMenu()"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
 
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
+          <div class="nav-links" id="navLinks">
+            <a class="navlink" href="#projects" onclick="toggleMenu()"
+              >Projects</a
+            >
+            <a class="navlink" href="#experience" onclick="toggleMenu()"
+              >Experience</a
+            >
+            <a class="navlink" href="#skills" onclick="toggleMenu()">Skills</a>
+            <a class="navlink" href="#leadership" onclick="toggleMenu()"
+              >Leadership</a
+            >
+            <a class="navlink" href="#contact" onclick="toggleMenu()"
+              >Contact</a
+            >
 
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html{ scroll-behavior:smooth; }
-    body{
-      font-family:var(--sans);
-      background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(900px 500px at 80% 25%, rgba(6,182,212,.14), transparent 55%),
-        radial-gradient(1000px 700px at 60% 90%, rgba(34,197,94,.12), transparent 65%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      color:var(--text);
-      line-height:1.6;
-      overflow-x:hidden;
-    }
-    a{ color:inherit; text-decoration:none; }
-    button{ font-family:inherit; }
-    .container{ width:min(1120px, 92vw); margin:0 auto; }
+            <div class="nav-cta">
+              <!-- ✅ Resume link in header -->
+              <a
+                class="btn"
+                id="resumeNavBtn"
+                href="/resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                title="Open resume PDF"
+              >
+                Resume
+              </a>
 
-    /* Subtle grid overlay */
-    .grid-bg{
-      position:fixed; inset:0;
-      background-image:
-        linear-gradient(to right, rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size:64px 64px;
-      mask-image:radial-gradient(circle at 50% 35%, rgba(0,0,0,.9), transparent 65%);
-      pointer-events:none;
-      opacity:.18;
-      z-index:0;
-    }
+              <button class="btn" id="copyEmailBtn" title="Copy email">
+                <span class="dot" aria-hidden="true"></span>
+                Copy email
+              </button>
 
-    /* Nav */
-    .nav{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:blur(14px);
-      background:rgba(7,10,16,.65);
-      border-bottom:1px solid rgba(255,255,255,.07);
-    }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:14px 0;
-      gap:16px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width:240px;
-    }
-    .logo{
-      width:36px; height:36px; border-radius:12px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 55%),
-        linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.85));
-      box-shadow:0 10px 25px rgba(124,58,237,.25);
-      border:1px solid rgba(255,255,255,.18);
-    }
-    .brand strong{ display:block; font-size:.98rem; letter-spacing:.2px; }
-    .brand span{ display:block; font-size:.80rem; color:var(--muted); margin-top:-2px; }
-
-    .nav-links{
-      display:flex; gap:16px; align-items:center; flex-wrap:wrap; justify-content:flex-end;
-    }
-    .nav-links a{
-      font-size:.90rem; color:var(--muted);
-      padding:8px 10px; border-radius:10px;
-      border:1px solid transparent;
-      transition:.2s ease;
-    }
-    .nav-links a:hover{
-      color:var(--text);
-      border-color:rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-    }
-
-    .nav-cta{ display:flex; gap:10px; align-items:center; margin-left:6px; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:10px;
-      padding:10px 12px; border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      color:var(--text);
-      font-weight:700;
-      font-size:.92rem;
-      transition:.2s ease;
-      box-shadow:0 8px 18px rgba(0,0,0,.22);
-      cursor:pointer;
-      white-space:nowrap;
-    }
-    .btn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.06);
-    }
-    .btn.primary{
-      background:linear-gradient(135deg, rgba(124,58,237,.95), rgba(6,182,212,.90));
-      border-color:rgba(255,255,255,.14);
-      box-shadow:0 16px 36px rgba(124,58,237,.18);
-    }
-    .btn.primary:hover{ filter:brightness(1.05); }
-    .btn .dot{
-      width:9px; height:9px; border-radius:999px;
-      background:var(--accent2);
-      box-shadow:0 0 14px rgba(34,197,94,.55);
-    }
-
-    /* Hero */
-    header{ position:relative; z-index:1; padding:42px 0 18px; }
-    .hero{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:start;
-      margin-top:10px;
-    }
-    @media (max-width: 920px){ .hero{ grid-template-columns:1fr; } .brand{min-width:auto;} }
-
-    .hero-card{
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(16,27,51,.92), rgba(14,22,42,.92));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow);
-      padding:22px;
-      position:relative;
-      overflow:hidden;
-    }
-    .hero-card:before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      background:
-        radial-gradient(800px 260px at 10% 0%, rgba(124,58,237,.25), transparent 60%),
-        radial-gradient(700px 250px at 90% 20%, rgba(6,182,212,.18), transparent 60%);
-      opacity:.95;
-      pointer-events:none;
-    }
-    .hero-card > *{ position:relative; z-index:1; }
-
-    .eyebrow{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      color:var(--muted);
-      font-family:var(--mono);
-      font-size:.82rem;
-      width:fit-content;
-    }
-    .pulse{
-      width:10px; height:10px; border-radius:999px;
-      background:var(--accent2);
-      box-shadow:0 0 0 0 rgba(34,197,94,.55);
-      animation:pulse 2.2s infinite;
-    }
-    @keyframes pulse{
-      0%{ box-shadow:0 0 0 0 rgba(34,197,94,.35); }
-      70%{ box-shadow:0 0 0 14px rgba(34,197,94,0); }
-      100%{ box-shadow:0 0 0 0 rgba(34,197,94,0); }
-    }
-
-    h1{
-      font-size:clamp(1.8rem, 2.6vw, 2.6rem);
-      line-height:1.15;
-      letter-spacing:-0.6px;
-      margin:14px 0 10px;
-    }
-    .subtitle{
-      color:var(--muted);
-      font-size:1.02rem;
-      max-width:70ch;
-    }
-    .subtitle strong{ color:var(--text); font-weight:800; }
-
-    /* ✅ Fix flaw #3: keywords are STATIC + highlighted immediately */
-    .keyword-bar{
-      margin-top:14px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      font-family:var(--mono);
-      font-size:.85rem;
-      color:var(--muted);
-    }
-    .pill b{
-      color:var(--text);
-      font-weight:800;
-      letter-spacing:-.2px;
-    }
-    .pill .kdot{
-      width:8px; height:8px; border-radius:999px;
-      background:var(--accent3);
-      box-shadow:0 0 14px rgba(6,182,212,.45);
-    }
-    .pill.green .kdot{ background:var(--accent2); box-shadow:0 0 14px rgba(34,197,94,.45); }
-    .pill.violet .kdot{ background:var(--accent); box-shadow:0 0 14px rgba(124,58,237,.40); }
-
-    .hero-actions{
-      display:flex; gap:12px; flex-wrap:wrap;
-      margin-top:16px;
-    }
-
-    /* Proof side */
-    .proof{ display:grid; gap:14px; }
-    .proof-card{
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(16,27,51,.86), rgba(14,22,42,.86));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow2);
-      padding:18px;
-    }
-    .proof-card h3{
-      font-size:1rem;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      margin-bottom:6px;
-    }
-    .badge{
-      font-family:var(--mono);
-      font-size:.78rem;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      padding:4px 8px;
-      border-radius:999px;
-      white-space:nowrap;
-    }
-    .proof-card p{ color:var(--muted); font-size:.94rem; margin-bottom:12px; }
-
-    .kpis{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap:10px;
-    }
-    .kpi{
-      border-radius:14px;
-      padding:10px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-    }
-    .kpi .num{
-      font-size:1.2rem;
-      font-weight:900;
-      letter-spacing:-0.4px;
-    }
-    .kpi .lbl{
-      font-family:var(--mono);
-      color:var(--muted2);
-      font-size:.78rem;
-      margin-top:2px;
-    }
-    .kpi .num.gradient{
-      background:linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
-    /* Sections */
-    section{ padding:52px 0; position:relative; z-index:1; }
-    .section-head{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:16px;
-    }
-    .section-title{
-      font-size:1.35rem;
-      letter-spacing:-0.3px;
-    }
-    .section-sub{
-      color:var(--muted);
-      font-size:.95rem;
-      max-width:75ch;
-    }
-    .divider{
-      height:1px;
-      background:linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.16), rgba(255,255,255,.06));
-      margin-top:12px;
-    }
-
-    /* Cards grid */
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-      margin-top:18px;
-    }
-    @media (max-width: 980px){ .cards{ grid-template-columns:repeat(2, minmax(0,1fr)); } }
-    @media (max-width: 640px){ .cards{ grid-template-columns:1fr; } }
-
-    .card{
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(16,27,51,.78), rgba(14,22,42,.78));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow2);
-      padding:18px;
-      transition: transform .2s ease, border-color .2s ease, background .2s ease;
-      position:relative;
-      overflow:hidden;
-    }
-    .card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(255,255,255,.18);
-      background:linear-gradient(180deg, rgba(16,27,51,.92), rgba(14,22,42,.86));
-    }
-    .card-top{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-      margin-bottom:10px;
-    }
-    .card h4{
-      font-size:1.05rem;
-      letter-spacing:-0.2px;
-      line-height:1.2;
-    }
-    .stack{
-      display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;
-    }
-    .tag{
-      font-family:var(--mono);
-      font-size:.78rem;
-      color:var(--muted);
-      padding:4px 8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-    }
-    .card p{ color:var(--muted); font-size:.95rem; margin-top:6px; }
-
-    .bullets{
-      margin-top:10px;
-      display:grid;
-      gap:6px;
-      color:var(--muted);
-      font-size:.92rem;
-    }
-    .bullets li{
-      list-style:none;
-      position:relative;
-      padding-left:16px;
-    }
-    .bullets li:before{
-      content:"";
-      position:absolute;
-      left:0;
-      top:.55em;
-      width:8px; height:8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.18);
-    }
-
-    .card-actions{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      margin-top:14px;
-      flex-wrap:wrap;
-    }
-    .link{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03);
-      color:var(--text);
-      font-weight:750;
-      font-size:.90rem;
-      transition:.2s ease;
-    }
-    .link:hover{
-      transform:translateY(-1px);
-      border-color:rgba(255,255,255,.18);
-      background:rgba(255,255,255,.05);
-    }
-    .link.muted{ font-weight:650; color:var(--muted); }
-
-    /* ✅ Mermaid container inside card */
-    .diagram{
-      margin-top:10px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      overflow:hidden;
-      padding:10px;
-    }
-    .diagram .mermaid{
-      font-family: var(--mono);
-      font-size: 12px;
-    }
-    /* Make Mermaid SVG responsive */
-    .diagram svg{
-      width:100% !important;
-      height:auto !important;
-    }
-
-    /* Experience timeline */
-    .timeline{ display:grid; gap:12px; margin-top:18px; }
-    .t-item{
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(16,27,51,.72), rgba(14,22,42,.72));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow2);
-      padding:16px 18px;
-    }
-    .t-head{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:flex-start;
-      flex-wrap:wrap;
-      margin-bottom:6px;
-    }
-    .t-head h4{ font-size:1.03rem; }
-    .t-head .where{ color:var(--muted); font-size:.92rem; margin-top:2px; }
-    .t-head .date{
-      font-family:var(--mono);
-      color:var(--muted2);
-      font-size:.85rem;
-      border:1px solid rgba(255,255,255,.10);
-      padding:4px 8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-      white-space:nowrap;
-    }
-
-    /* Skills matrix */
-    .skills{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-      margin-top:18px;
-    }
-    @media (max-width:860px){ .skills{ grid-template-columns:1fr; } }
-    .skillbox{
-      border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(16,27,51,.72), rgba(14,22,42,.72));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:var(--shadow2);
-      padding:16px 18px;
-    }
-    .skillbox h4{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      font-size:1.03rem;
-      margin-bottom:10px;
-    }
-    .chips{ display:flex; gap:8px; flex-wrap:wrap; }
-
-    /* Footer */
-    footer{
-      padding:44px 0 54px;
-      border-top:1px solid rgba(255,255,255,.08);
-      margin-top:10px;
-      position:relative;
-      z-index:1;
-    }
-    .foot{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:16px;
-      flex-wrap:wrap;
-    }
-    .foot p{ color:var(--muted); max-width:70ch; font-size:.95rem; }
-    .status{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(34,197,94,.35);
-      background:rgba(34,197,94,.06);
-      font-family:var(--mono);
-      color:var(--muted);
-      margin-top:12px;
-      width:fit-content;
-    }
-    .status .ok{
-      width:9px; height:9px; border-radius:999px;
-      background:var(--accent2);
-      box-shadow:0 0 14px rgba(34,197,94,.55);
-    }
-
-    /* Toast */
-    .toast{
-      position:fixed;
-      bottom:18px;
-      left:50%;
-      transform:translateX(-50%) translateY(20px);
-      opacity:0;
-      pointer-events:none;
-      z-index:100;
-      border-radius:14px;
-      padding:10px 12px;
-      background:rgba(16,27,51,.92);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:var(--shadow2);
-      color:var(--text);
-      font-size:.92rem;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      transition:.25s ease;
-      backdrop-filter:blur(10px);
-    }
-    .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
-    .toast .mini{
-      width:8px; height:8px; border-radius:999px;
-      background:var(--accent3);
-      box-shadow:0 0 14px rgba(6,182,212,.45);
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .pulse{ animation:none; }
-      .btn:hover, .card:hover, .link:hover{ transform:none; }
-      .toast{ transition:none; }
-    }
-
-    /* ========================================= */
-    /* ✅ MOBILE NAVIGATION FIX */
-    /* ========================================= */
-    
-    .menu-btn {
-      display: none; /* Hidden on desktop */
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 8px;
-      padding: 8px;
-      color: var(--text);
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      /* 1. Show the hamburger button */
-      .menu-btn {
-        display: flex;
-      }
-
-      /* 2. Style the dropdown menu (Hidden by default) */
-      .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(7, 10, 16, 0.98);
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        
-        flex-direction: column;
-        align-items: stretch;
-        padding: 20px;
-        gap: 15px;
-        
-        /* Animation setup */
-        opacity: 0;
-        transform: translateY(-10px);
-        pointer-events: none;
-        transition: 0.2s ease;
-        
-        /* IMPORTANT: Override the previous display:none */
-        display: flex !important; 
-      }
-
-      /* 3. The "Open" State */
-      .nav-links.open {
-        opacity: 1;
-        transform: translateY(0);
-        pointer-events: all;
-      }
-
-      /* 4. Fix the links inside the menu */
-      .nav-links a:not(.btn) {
-        display: block !important; /* Force show links */
-        padding: 12px;
-        border-radius: 8px;
-        background: rgba(255,255,255,0.03);
-        text-align: center;
-        width: 100%;
-      }
-
-      /* 5. Fix the buttons container */
-      .nav-cta {
-        flex-direction: column;
-        width: 100%;
-        margin-left: 0;
-      }
-      .nav-cta .btn {
-        width: 100%;
-        display: flex !important; /* Force show buttons */
-      }
-      
-      /* Hide the 'Backend...' subtitle in logo on very small screens to save space */
-      .brand span { display: none; }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="grid-bg"></div>
-
-  <!-- NAV -->
-  <div class="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="brand" href="#top" aria-label="Home">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            <strong>Sushov Karmacharya</strong>
-            <span>Backend • Distributed Systems</span>
-          </div>
-        </a>
-
-        <button class="menu-btn" aria-label="Toggle menu" onclick="toggleMenu()">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-
-        <div class="nav-links" id="navLinks">
-          <a href="#projects" onclick="toggleMenu()">Projects</a>
-          <a href="#experience" onclick="toggleMenu()">Experience</a>
-          <a href="#skills" onclick="toggleMenu()">Skills</a>
-          <a href="#leadership" onclick="toggleMenu()">Leadership</a>
-          <a href="#contact" onclick="toggleMenu()">Contact</a>
-
-          <div class="nav-cta">
-            <button class="btn" id="copyEmailBtn" title="Copy email">
-              <span class="dot" aria-hidden="true"></span>
-              Copy
-            </button>
-
-            <a class="btn primary" href="mailto:karmacharya.sushov@gmail.com">
-              Email me
-            </a>
+              <a class="btn primary" href="mailto:karmacharya.sushov@gmail.com">
+                Email me
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- HERO -->
-  <header id="top">
-    <div class="container">
-      <div class="hero">
-        <div class="hero-card">
-          <div class="eyebrow">
-            <span class="pulse" aria-hidden="true"></span>
-            Open to Backend / Infra roles • Bay Area • MSCS @ Georgia Tech
-          </div>
-
-          <h1>
-            I build
-            <span style="background:linear-gradient(90deg,var(--accent),var(--accent3)); -webkit-background-clip:text; background-clip:text; color:transparent;">
-              infrastructure-grade backends
-            </span>
-            that stay correct under retries and stay debuggable in production.
-          </h1>
-
-          <p class="subtitle">
-            6–7+ years owning production services and shipping end-to-end systems:
-            <strong>idempotency, concurrency, caching, and observability</strong> —
-            plus cloud infrastructure (Kubernetes + Terraform).
-          </p>
-
-          <!-- ✅ Static, instant-scan keywords -->
-          <div class="keyword-bar" aria-label="Keyword highlights">
-            <div class="pill violet"><span class="kdot" aria-hidden="true"></span><b>Java</b> / <b>Python</b> / <b>C++</b></div>
-            <div class="pill green"><span class="kdot" aria-hidden="true"></span><b>Kubernetes</b> + <b>Terraform</b></div>
-            <div class="pill"><span class="kdot" aria-hidden="true"></span><b>Redis</b> + <b>Postgres</b> + <b>SQL</b></div>
-            <!-- <div class="pill"><span class="kdot" aria-hidden="true"></span><b>Prometheus</b> / <b>Grafana</b></div> -->
-          </div>
-
-          <div class="hero-actions">
-            <!-- Replace with your resume file path/link -->
-            <!-- <a class="btn" href="#" id="resumeBtn">Download resume</a> -->
-
-            <a class="btn" href="https://github.com/sushov" target="_blank" rel="noreferrer">GitHub</a>
-
-            <a class="btn" href="https://www.linkedin.com/in/sushov-karmacharya/" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-
-          <!-- ✅ Added: deep-link proof CTA -->
-          <!-- <div style="margin-top:14px; color:var(--muted); font-size:.92rem;"> -->
-            <!-- Recruiter-friendly proof: -->
-            <!-- <a class="link muted" href="#projects" style="margin-left:8px;">Deep links to exact files</a> -->
-          <!-- </div> -->
-        </div>
-
-        <div class="proof">
-          <div class="proof-card">
-            <h3>Production impact (quick proof) <span class="badge">scan</span></h3>
-            <p>Not just “built features” — reduced downtime, MTTR, and p99 latency on real systems.</p>
-            <div class="kpis">
-              <div class="kpi">
-                <div class="num gradient">50K+</div>
-                <div class="lbl">daily active users (owned services)</div>
-              </div>
-              <div class="kpi">
-                <div class="num gradient">40%</div>
-                <div class="lbl">p99 latency reduction (peak)</div>
-              </div>
-              <div class="kpi">
-                <div class="num gradient">30–35%</div>
-                <div class="lbl">downtime / MTTR improvement</div>
-              </div>
-              <div class="kpi">
-                <div class="num gradient">200K+</div>
-                <div class="lbl">messages/min (load-tested)</div>
-              </div>
+    <!-- HERO -->
+    <header id="top">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-card">
+            <div class="eyebrow">
+              <span class="pulse" aria-hidden="true"></span>
+              Open to Backend / Infra roles • Bay Area • MSCS @ Georgia Tech
             </div>
 
-            <!-- ✅ Add proof links here later -->
-            <!-- <div class="card-actions" style="margin-top:12px;"> -->
-              <!-- <a class="link muted" href="#" onclick="showToast('Add: /diagrams, /benchmarks, /postmortems links'); return false;">Diagrams</a> -->
-              <!-- <a class="link muted" href="#" onclick="showToast('Add a benchmark screenshot or README section'); return false;">Benchmarks</a> -->
-              <!-- <a class="link muted" href="#" onclick="showToast('Add a short incident writeup / runbook sample'); return false;">Incident notes</a> -->
-            <!-- </div> -->
-          </div>
+            <h1>
+              I build
+              <span class="highlight"> infrastructure-grade backends </span>
+              that stay correct under retries and stay debuggable in production.
+            </h1>
 
-          <div class="proof-card">
-            <h3>What I’m best at <span class="badge">signal</span></h3>
-            <p>
-              Correctness-first design: idempotency, retries, isolation, observability.
-              I optimize systems so incidents are rarer and debugging is faster.
+            <p class="subtitle">
+              5+ years owning production services and shipping end-to-end
+              systems:
+              <strong
+                >idempotency, concurrency, caching, and observability</strong
+              >
+              — plus cloud infrastructure (Kubernetes + Terraform).
             </p>
-            <div class="stack">
-              <span class="tag">Idempotency</span>
-              <span class="tag">Concurrency</span>
-              <span class="tag">Caching</span>
-              <span class="tag">SLO mindset</span>
-              <span class="tag">K8s + Terraform</span>
-              <span class="tag">Production debugging</span>
+
+            <div class="keyword-bar" aria-label="Keyword highlights">
+              <div class="pill violet">
+                <span class="kdot" aria-hidden="true"></span><b>Java</b> /
+                <b>Python</b> / <b>C++</b>
+              </div>
+              <div class="pill green">
+                <span class="kdot" aria-hidden="true"></span><b>Kubernetes</b> +
+                <b>Terraform</b>
+              </div>
+              <div class="pill">
+                <span class="kdot" aria-hidden="true"></span><b>Redis</b> +
+                <b>Postgres</b> + <b>SQL</b>
+              </div>
+            </div>
+
+            <!-- ✅ Cleaner: GitHub/LinkedIn as profile buttons (different style) -->
+            <div class="hero-actions">
+              <a class="btn primary" href="/resume.pdf" target="_blank">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                Resume
+              </a>
+              <a
+                class="btn profile"
+                href="https://github.com/sushov"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M12 .5C5.73.5.75 5.62.75 12c0 5.1 3.29 9.42 7.86 10.95.58.11.79-.25.79-.56v-2.1c-3.2.71-3.88-1.57-3.88-1.57-.52-1.36-1.27-1.72-1.27-1.72-1.04-.73.08-.72.08-.72 1.15.08 1.76 1.2 1.76 1.2 1.02 1.78 2.68 1.27 3.33.97.1-.76.4-1.27.72-1.56-2.55-.3-5.23-1.3-5.23-5.78 0-1.28.45-2.33 1.2-3.15-.12-.3-.52-1.52.11-3.17 0 0 .98-.32 3.2 1.2a10.7 10.7 0 0 1 5.83 0c2.22-1.52 3.2-1.2 3.2-1.2.63 1.65.23 2.87.11 3.17.75.82 1.2 1.87 1.2 3.15 0 4.49-2.69 5.48-5.25 5.78.41.37.78 1.08.78 2.18v3.23c0 .31.21.68.8.56A11.55 11.55 0 0 0 23.25 12C23.25 5.62 18.27.5 12 .5z"
+                  />
+                </svg>
+                GitHub
+              </a>
+
+              <a
+                class="btn profile"
+                href="https://www.linkedin.com/in/sushov-karmacharya/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path
+                    d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.62-1.85 3.34-1.85 3.57 0 4.23 2.35 4.23 5.41v6.33zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"
+                  />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <div class="proof">
+            <div class="proof-card">
+              <h3>Production impact <span class="badge">quick scan</span></h3>
+              <p>
+                Reduced latency, improved reliability, and shipped systems that
+                are easier to debug under pressure.
+              </p>
+              <div class="kpis">
+                <div class="kpi">
+                  <div class="num">50K+</div>
+                  <div class="lbl">daily active users (owned services)</div>
+                </div>
+                <div class="kpi">
+                  <div class="num">40%</div>
+                  <div class="lbl">p99 latency reduction (peak)</div>
+                </div>
+                <div class="kpi">
+                  <div class="num">30–35%</div>
+                  <div class="lbl">downtime / MTTR improvement</div>
+                </div>
+                <div class="kpi">
+                  <div class="num">200K+</div>
+                  <div class="lbl">messages/min (load-tested)</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="proof-card">
+              <h3>What I’m best at <span class="badge">signal</span></h3>
+              <p>
+                Correctness-first design: idempotency, retries, isolation, and
+                observability. I optimize systems so incidents are rarer and
+                debugging is faster.
+              </p>
+              <div class="stack">
+                <span class="tag">Idempotency</span>
+                <span class="tag">Concurrency</span>
+                <span class="tag">Caching</span>
+                <span class="tag">SLO mindset</span>
+                <span class="tag">K8s + Terraform</span>
+                <span class="tag">Production debugging</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-<section id="projects">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="section-title">02. Deployed Infrastructure & Systems</div>
-          <div class="divider"></div>
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <!-- ✅ removed “02.” to avoid inconsistent numbering -->
+            <div class="section-title">Deployed Infrastructure & Systems</div>
+            <div class="divider"></div>
+          </div>
         </div>
-      </div>
 
-      <div class="cards">
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Cloud Resume Challenge (GCP)</h4>
-              <div class="stack">
-                <span class="tag">GCP</span><span class="tag">Cloud Functions</span><span class="tag">Terraform</span><span class="tag">CI/CD</span>
+        <div class="cards">
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Cloud Resume Challenge (GCP)</h4>
+                <div class="stack">
+                  <span class="tag">GCP</span
+                  ><span class="tag">Cloud Functions</span
+                  ><span class="tag">Terraform</span
+                  ><span class="tag">CI/CD</span>
+                </div>
               </div>
+              <span class="badge">live</span>
             </div>
-            <span class="badge">live</span>
-          </div>
 
-          <div class="diagram">
-            <div class="mermaid">
-graph LR
-    User[Visitor] -->|HTTPS| CDN[CDN/LB]
-    CDN -->|Get Site| Bucket[GCS Bucket]
-    CDN -->|API Call| func[Cloud Function]
-    func -->|Update| DB[(Firestore)]
-    Repo[GitHub] -->|Push| Build[Cloud Build]
-    Build -->|Deploy| func & Bucket
-    style func fill:#4285F4,stroke:#fff,color:#fff
-    style DB fill:#FFCA28,stroke:#333,color:#000
+            <div class="diagram">
+              <pre class="mermaid">
+graph LR;
+    User[Visitor] -->|HTTPS| CDN[CDN/LB];
+    CDN -->|Get Site| Bucket[GCS Bucket];
+    CDN -->|API Call| func[Cloud Function];
+    func -->|Update| DB[(Firestore)];
+    Repo[GitHub] -->|Push| Build[Cloud Build];
+    Build -->|Deploy| func & Bucket;
+    style func fill:#4285F4,stroke:#fff,color:#fff;
+    style DB fill:#FFCA28,stroke:#333,color:#000;
+</pre>
             </div>
-          </div>
 
-          <p>Full-stack serverless architecture handling real-time visitor counting. Zero manual deployments permitted.</p>
+            <p>
+              Serverless architecture handling real-time visitor counting with
+              reproducible infra and automated deployments.
+            </p>
 
-          <ul class="bullets">
-            <li><strong>Infrastructure as Code:</strong> Entire GCP stack (Firestore, Functions, IAM) provisioned via Terraform.</li>
-            <li><strong>CI/CD Pipeline:</strong> GitHub Actions automatically runs Python tests and triggers Cloud Build for deployment.</li>
-            <li><strong>Backend Logic:</strong> Python Cloud Function implementing atomic database increments and CORS handling.</li>
-          </ul>
+            <ul class="bullets">
+              <li>
+                <strong>IaC:</strong> Firestore, Functions, IAM provisioned via
+                Terraform.
+              </li>
+              <li>
+                <strong>CI/CD:</strong> GitHub Actions runs tests and deploys
+                via Cloud Build.
+              </li>
+              <li>
+                <strong>Backend:</strong> Atomic increments + CORS-safe API
+                design.
+              </li>
+            </ul>
+          </article>
 
-          <!-- <div class="card-actions"> -->
-            <!-- <a class="link" href="https://github.com/sushov/cloud-resume-challenge" target="_blank" rel="noreferrer"> -->
-              <!-- View Architecture (Repo) -->
-            <!-- </a> -->
-            <!-- <a class="link muted" href="https://sushov.com" target="_blank" rel="noreferrer"> -->
-              <!-- Live Demo -->
-            <!-- </a> -->
-          <!-- </div> -->
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Idempotent Transaction Processor</h4>
-              <div class="stack">
-                <span class="tag">Python</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">Correctness</span>
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Idempotent Transaction Processor</h4>
+                <div class="stack">
+                  <span class="tag">Python</span><span class="tag">Redis</span
+                  ><span class="tag">PostgreSQL</span
+                  ><span class="tag">Correctness</span>
+                </div>
               </div>
+              <span class="badge">backend</span>
             </div>
-            <span class="badge">backend</span>
-          </div>
 
-          <div class="diagram">
-            <div class="mermaid">
-graph LR
-  req[API Request] -->|Key| lock{Redis Lock}
-  lock -->|Exists| cached[Return 200]
-  lock -->|New| process[Process Payment]
-  process --> db[(Postgres)]
-  process -->|Success| cache_result[Cache Result]
-  style lock fill:#b93f50,stroke:#fff,stroke-width:2px
+            <div class="diagram">
+              <pre class="mermaid">
+graph LR;
+  req[API Request] -->|Idempotency Key| lock{Redis Lock};
+  lock -->|Exists| cached[Return cached result];
+  lock -->|New| process[Process Payment];
+  process --> db[(Postgres)];
+  process --> cache_result[Cache Result];
+  style lock fill:#b93f50,stroke:#fff,stroke-width:2px;
+</pre>
             </div>
-          </div>
 
-          <p>Prevents double-billing during network retries using distributed locking and idempotency keys.</p>
+            <p>
+              Prevents double-billing during network retries using distributed
+              locking + idempotency keys.
+            </p>
 
-          <ul class="bullets">
-            <li>Guarantees <strong>exactly-once</strong> side effects for at-least-once message delivery.</li>
-            <li>Implemented atomic Redis `SETNX` locks with TTL to prevent deadlocks during crash loops.</li>
-            <li>Optimized for high-concurrency financial transaction throughput.</li>
-          </ul>
+            <ul class="bullets">
+              <li>
+                Guarantees <strong>exactly-once</strong> side effects for
+                at-least-once delivery patterns.
+              </li>
+              <li>
+                Redis `SETNX` + TTL to avoid deadlocks and handle crash loops
+                safely.
+              </li>
+              <li>Designed for high-concurrency transaction throughput.</li>
+            </ul>
+          </article>
 
-          <!-- <div class="card-actions"> -->
-            <!-- <a class="link" href="https://github.com/sushov/YOUR-REPO/blob/main/processor.py" target="_blank" rel="noreferrer"> -->
-              <!-- View Locking Logic -->
-            <!-- </a> -->
-          <!-- </div> -->
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Concurrent Messaging Engine</h4>
-              <div class="stack">
-                <span class="tag">C++</span><span class="tag">Threads</span><span class="tag">Systems</span><span class="tag">Profiling</span>
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Concurrent Messaging Engine</h4>
+                <div class="stack">
+                  <span class="tag">C++</span><span class="tag">Threads</span
+                  ><span class="tag">Systems</span
+                  ><span class="tag">Profiling</span>
+                </div>
               </div>
+              <span class="badge">performance</span>
             </div>
-            <span class="badge">performance</span>
-          </div>
 
-          <div class="diagram">
-            <div class="mermaid">
+            <div class="diagram">
+              <pre class="mermaid">
 sequenceDiagram
   participant Client
   participant Queue
@@ -926,378 +363,467 @@ sequenceDiagram
       Worker->>Worker: Batch Process
   end
   Worker-->>-Client: Async Ack
+</pre>
+            </div>
+
+            <p>
+              High-throughput messaging framework exploring thread safety,
+              contention, and memory models.
+            </p>
+
+            <ul class="bullets">
+              <li>
+                Thread-safe blocking queues using `std::mutex` +
+                `std::condition_variable`.
+              </li>
+              <li>
+                Profiled contention to tune worker pool size and batching
+                strategy.
+              </li>
+              <li>Graceful shutdown and cleanup to prevent leaks.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Experience</div>
+            <div class="section-sub">
+              Owned production backend services end-to-end: design, deployment,
+              monitoring, and incident response.
+            </div>
+            <div class="divider"></div>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-head">
+              <div>
+                <h4>Senior Software Developer — Backend & Infrastructure</h4>
+                <div class="where">
+                  Curves n’ Colors Pvt. Ltd • Multi-tenant platforms • 50K+ DAU
+                </div>
+              </div>
+              <div class="date">Aug 2019 – Sep 2022</div>
+            </div>
+            <ul class="bullets">
+              <li>
+                Reduced peak p99 latency ~40% using Redis caching + SQL tuning
+              </li>
+              <li>
+                Improved availability ~35% by fixing concurrency + retry failure
+                modes
+              </li>
+              <li>Built metrics/logging + runbooks to reduce MTTR ~30%</li>
+            </ul>
+            <div class="stack">
+              <span class="tag">Microservices</span
+              ><span class="tag">Redis</span
+              ><span class="tag">PostgreSQL/MySQL</span
+              ><span class="tag">CI/CD</span
+              ><span class="tag">Observability</span>
             </div>
           </div>
 
-          <p>High-throughput messaging framework exploring thread safety, contention, and memory models.</p>
+          <div class="t-item">
+            <div class="t-head">
+              <div>
+                <h4>Co-Founder & Lead Engineer</h4>
+                <div class="where">
+                  ThunderCodes Pvt. Ltd • E-commerce / booking platforms • 10x
+                  traffic spikes
+                </div>
+              </div>
+              <div class="date">Jul 2019 – Sep 2022</div>
+            </div>
+            <ul class="bullets">
+              <li>Owned SDLC: architecture → deploy → monitor → maintain</li>
+              <li>
+                Designed async workflows to decouple ingestion from downstream
+                processing
+              </li>
+              <li>
+                Improved rollout safety with containerized deployments +
+                rollback strategy
+              </li>
+            </ul>
+            <div class="stack">
+              <span class="tag">AWS</span><span class="tag">Docker</span
+              ><span class="tag">Kubernetes</span
+              ><span class="tag">Terraform</span>
+            </div>
+          </div>
 
-          <ul class="bullets">
-            <li>Implemented thread-safe blocking queues using `std::mutex` and `std::condition_variable`.</li>
-            <li>Profiled CPU contention to tune worker thread pool size for optimal throughput.</li>
-            <li>Handled graceful shutdown and memory cleanup to prevent leaks.</li>
-          </ul>
+          <div class="t-item">
+            <div class="t-head">
+              <div>
+                <h4>Senior Backend Developer</h4>
+                <div class="where">
+                  KlientScape Software • Financial / HR systems •
+                  correctness-first
+                </div>
+              </div>
+              <div class="date">Jul 2016 – Feb 2019</div>
+            </div>
+            <ul class="bullets">
+              <li>
+                Improved throughput ~40% via schema refactors, indexing, and
+                query tuning
+              </li>
+              <li>
+                Built robust error-handling pipelines reducing recurring
+                failures ~25%
+              </li>
+            </ul>
+            <div class="stack">
+              <span class="tag">SQL</span><span class="tag">Schema design</span
+              ><span class="tag">Performance</span>
+            </div>
+          </div>
 
-          <!-- <div class="card-actions"> -->
-            <!-- <a class="link" href="https://github.com/sushov/YOUR-REPO/blob/main/queue.cpp" target="_blank" rel="noreferrer"> -->
-              <!-- View Threading Code -->
-            <!-- </a> -->
-          <!-- </div> -->
-        </article>
-
+          <div class="t-item">
+            <div class="t-head">
+              <div>
+                <h4>MSCS Candidate (Systems) — Georgia Tech (OMSCS)</h4>
+                <div class="where">
+                  Operating Systems • Distributed Systems • Networks • Security
+                </div>
+              </div>
+              <div class="date">2023 – Present</div>
+            </div>
+            <ul class="bullets">
+              <li>
+                Hands-on labs: concurrency, distributed patterns, failure
+                recovery
+              </li>
+              <li>Built cloud-native labs using Kubernetes + Terraform</li>
+            </ul>
+            <div class="stack">
+              <span class="tag">GIOS</span
+              ><span class="tag">Computer Networks</span
+              ><span class="tag">InfoSec</span>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Skills</div>
+            <div class="section-sub">
+              Keywords aligned to infra/backend roles: reliability, concurrency,
+              observability, safe deployments.
+            </div>
+            <div class="divider"></div>
+          </div>
+        </div>
+
+        <div class="skills">
+          <div class="skillbox">
+            <h4>
+              Backend & Distributed Systems <span class="badge">core</span>
+            </h4>
+            <div class="chips">
+              <span class="tag">Concurrency</span>
+              <span class="tag">Idempotency</span>
+              <span class="tag">Caching</span>
+              <span class="tag">Fault tolerance</span>
+              <span class="tag">Load balancing</span>
+              <span class="tag">Service isolation</span>
+              <span class="tag">Retries + backoff</span>
+              <span class="tag">Ordering guarantees</span>
+            </div>
+          </div>
+
+          <div class="skillbox">
+            <h4>Cloud, Infra & Ops <span class="badge">infra</span></h4>
+            <div class="chips">
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Terraform</span>
+              <span class="tag">Docker</span>
+              <span class="tag">AWS (EC2/S3/IAM)</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">Incident response</span>
+              <span class="tag">Runbooks</span>
+              <span class="tag">SLO mindset</span>
+            </div>
+          </div>
+
+          <div class="skillbox">
+            <h4>Observability <span class="badge">debug</span></h4>
+            <div class="chips">
+              <span class="tag">Metrics</span>
+              <span class="tag">Logging</span>
+              <span class="tag">Alerting</span>
+              <span class="tag">Tracing</span>
+              <span class="tag">Prometheus</span>
+              <span class="tag">Grafana</span>
+              <span class="tag">ELK</span>
+            </div>
+          </div>
+
+          <div class="skillbox">
+            <h4>Languages & Data <span class="badge">tools</span></h4>
+            <div class="chips">
+              <span class="tag">Java</span>
+              <span class="tag">Python</span>
+              <span class="tag">C++</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Bash</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Redis</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section id="leadership">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Leadership & Mentorship</div>
+            <div class="section-sub">
+              Ownership signal: co-founder delivery + Code Ninjas center
+              leadership.
+            </div>
+            <div class="divider"></div>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Center Director / Instructor — Code Ninjas</h4>
+                <div class="stack">
+                  <span class="tag">Mentorship</span
+                  ><span class="tag">Operations</span
+                  ><span class="tag">Teaching</span>
+                </div>
+              </div>
+              <span class="badge">leadership</span>
+            </div>
+            <p>
+              Led operations and mentored learners in programming, debugging,
+              and project execution.
+            </p>
+            <ul class="bullets">
+              <li>Standardized onboarding and improved teaching consistency</li>
+              <li>Helped students ship real projects (Unity / JS / Python)</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Co-Founder — Startup Delivery</h4>
+                <div class="stack">
+                  <span class="tag">0→1</span><span class="tag">Customers</span
+                  ><span class="tag">On-call</span>
+                </div>
+              </div>
+              <span class="badge">ownership</span>
+            </div>
+            <p>
+              Built and operated systems under real constraints: traffic spikes,
+              outages, and customer expectations.
+            </p>
+            <ul class="bullets">
+              <li>
+                End-to-end responsibility: architecture → deploy → support
+              </li>
+              <li>Created monitoring + playbooks to reduce blast radius</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Systems learning (applied)</h4>
+                <div class="stack">
+                  <span class="tag">OMSCS</span><span class="tag">Labs</span
+                  ><span class="tag">Reliability</span>
+                </div>
+              </div>
+              <span class="badge">growth</span>
+            </div>
+            <p>
+              Built small, demonstrable labs that map directly to platform
+              interviews: failure recovery, throughput, debugging.
+            </p>
+            <ul class="bullets">
+              <li>K8s + Terraform drills (self-healing + reproducibility)</li>
+              <li>Concurrency + message passing experiments</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-title">Contact</div>
+            <div class="divider"></div>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Fastest way</h4>
+                <div class="stack">
+                  <span class="tag">Email</span><span class="tag">Direct</span>
+                </div>
+              </div>
+              <span class="badge">contact</span>
+            </div>
+            <p
+              style="
+                font-family: var(--mono);
+                font-size: 0.98rem;
+                margin-top: 6px;
+              "
+            >
+              karmacharya.sushov@gmail.com
+            </p>
+            <div class="card-actions">
+              <a class="link" href="mailto:karmacharya.sushov@gmail.com"
+                >Email</a
+              >
+              <button class="link muted" onclick="copyEmail(); return false;">
+                Copy
+              </button>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>Profiles</h4>
+                <div class="stack">
+                  <span class="tag">GitHub</span
+                  ><span class="tag">LinkedIn</span>
+                </div>
+              </div>
+              <span class="badge">proof</span>
+            </div>
+            <p>Code, writeups, and work history.</p>
+            <div class="card-actions">
+              <a
+                class="link"
+                href="https://github.com/sushov"
+                target="_blank"
+                rel="noreferrer"
+                >GitHub</a
+              >
+              <a
+                class="link muted"
+                href="https://www.linkedin.com/in/sushov-karmacharya/"
+                target="_blank"
+                rel="noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-top">
+              <div>
+                <h4>What I’m looking for</h4>
+                <div class="stack">
+                  <span class="tag">Backend</span
+                  ><span class="tag">Platform</span
+                  ><span class="tag">Infra</span>
+                </div>
+              </div>
+              <span class="badge">roles</span>
+            </div>
+            <p>
+              Backend / Platform / Infra roles where reliability and ownership
+              matter: correctness, latency, observability, safe deployments.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="foot">
+          <div>
+            <strong style="font-size: 1rem">Sushov Karmacharya</strong>
+            <p>
+              Backend & Distributed Systems Engineer. Correctness-first design,
+              reliability instincts, production ownership.
+            </p>
+
+            <!-- ✅ More professional line -->
+            <div class="footnote" aria-label="Availability">
+              <span class="ok" aria-hidden="true"></span>
+              Open to backend/platform roles • Bay Area • Remote-friendly
+            </div>
+          </div>
+
+          <!-- ✅ Footer now includes GitHub + LinkedIn buttons -->
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 10px;
+              min-width: 240px;
+            "
+          >
+            <a class="btn primary" href="mailto:karmacharya.sushov@gmail.com"
+              >Let’s talk</a
+            >
+            <a
+              class="btn"
+              href="https://github.com/sushov"
+              target="_blank"
+              rel="noreferrer"
+              >GitHub</a
+            >
+            <a
+              class="btn"
+              href="https://www.linkedin.com/in/sushov-karmacharya/"
+              target="_blank"
+              rel="noreferrer"
+              >LinkedIn</a
+            >
+            <button
+              class="btn"
+              onclick="window.scrollTo({top:0, behavior:'smooth'})"
+            >
+              Back to top
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">
+      <span class="mini" aria-hidden="true"></span>
+      <span id="toastMsg">Copied.</span>
     </div>
-  </section>
 
-  <!-- EXPERIENCE -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="section-title">Experience</div>
-          <div class="section-sub">
-            I’ve owned production backend services end-to-end: design, deployment, monitoring, and incident response.
-          </div>
-          <div class="divider"></div>
-        </div>
-      </div>
-
-      <div class="timeline">
-        <div class="t-item">
-          <div class="t-head">
-            <div>
-              <h4>Senior Software Developer — Backend & Infrastructure</h4>
-              <div class="where">Curves n’ Colors Pvt. Ltd • Multi-tenant platforms • 50K+ DAU</div>
-            </div>
-            <div class="date">Aug 2019 – Sep 2022</div>
-          </div>
-          <ul class="bullets">
-            <li>Reduced peak p99 latency ~40% using Redis caching + SQL tuning</li>
-            <li>Improved availability ~35% by fixing concurrency + retry failure modes</li>
-            <li>Built metrics/logging + runbooks to reduce MTTR ~30%</li>
-          </ul>
-          <div class="stack">
-            <span class="tag">Microservices</span><span class="tag">Redis</span><span class="tag">PostgreSQL/MySQL</span><span class="tag">CI/CD</span><span class="tag">Observability</span>
-          </div>
-        </div>
-
-        <div class="t-item">
-          <div class="t-head">
-            <div>
-              <h4>Co-Founder & Lead Engineer</h4>
-              <div class="where">ThunderCodes Pvt. Ltd • E-commerce / booking platforms • 10x traffic spikes</div>
-            </div>
-            <div class="date">Jul 2019 – Sep 2022</div>
-          </div>
-          <ul class="bullets">
-            <li>Owned full SDLC: architecture → deploy → monitor → maintain</li>
-            <li>Designed async workflows to decouple ingestion from downstream processing</li>
-            <li>Improved rollout safety using containerized deployments + rollback strategy</li>
-          </ul>
-          <div class="stack">
-            <span class="tag">AWS</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Terraform</span>
-          </div>
-        </div>
-
-        <div class="t-item">
-          <div class="t-head">
-            <div>
-              <h4>Senior Backend Developer</h4>
-              <div class="where">KlientScape Software • Financial / HR systems • correctness-first</div>
-            </div>
-            <div class="date">Jul 2016 – Feb 2019</div>
-          </div>
-          <ul class="bullets">
-            <li>Improved throughput ~40% via schema refactors, indexing, and query tuning</li>
-            <li>Built robust error-handling pipelines reducing recurring failures ~25%</li>
-          </ul>
-          <div class="stack">
-            <span class="tag">SQL</span><span class="tag">Schema design</span><span class="tag">Performance</span>
-          </div>
-        </div>
-
-        <div class="t-item">
-          <div class="t-head">
-            <div>
-              <h4>MSCS Candidate (Systems) — Georgia Tech (OMSCS)</h4>
-              <div class="where">Operating Systems • Distributed Systems • Networks • Security</div>
-            </div>
-            <div class="date">2023 – Present</div>
-          </div>
-          <ul class="bullets">
-            <li>Hands-on labs: concurrency, distributed patterns, failure recovery</li>
-            <li>Built local cloud-native labs using Kubernetes + Terraform</li>
-          </ul>
-          <div class="stack">
-            <span class="tag">GIOS</span><span class="tag">Computer Networks</span><span class="tag">InfoSec</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="section-title">Skills</div>
-          <div class="section-sub">
-            Focused keywords that match infra/backend roles (Discord/Orb-style): reliability, concurrency, observability.
-          </div>
-          <div class="divider"></div>
-        </div>
-      </div>
-
-      <div class="skills">
-        <div class="skillbox">
-          <h4>Backend & Distributed Systems <span class="badge">core</span></h4>
-          <div class="chips">
-            <span class="tag">Concurrency</span>
-            <span class="tag">Idempotency</span>
-            <span class="tag">Caching</span>
-            <span class="tag">Fault tolerance</span>
-            <span class="tag">Load balancing</span>
-            <span class="tag">Service isolation</span>
-            <span class="tag">Retries + backoff</span>
-            <span class="tag">Ordering guarantees</span>
-          </div>
-        </div>
-
-        <div class="skillbox">
-          <h4>Cloud, Infra & Ops <span class="badge">infra</span></h4>
-          <div class="chips">
-            <span class="tag">Kubernetes</span>
-            <span class="tag">Terraform</span>
-            <span class="tag">Docker</span>
-            <span class="tag">AWS (EC2/S3/IAM)</span>
-            <span class="tag">CI/CD</span>
-            <span class="tag">Incident response</span>
-            <span class="tag">Runbooks</span>
-            <span class="tag">SLO mindset</span>
-          </div>
-        </div>
-
-        <div class="skillbox">
-          <h4>Observability <span class="badge">debug</span></h4>
-          <div class="chips">
-            <span class="tag">Metrics</span>
-            <span class="tag">Logging</span>
-            <span class="tag">Alerting</span>
-            <span class="tag">Tracing</span>
-            <span class="tag">Prometheus</span>
-            <span class="tag">Grafana</span>
-            <span class="tag">ELK</span>
-          </div>
-        </div>
-
-        <div class="skillbox">
-          <h4>Languages & Data <span class="badge">tools</span></h4>
-          <div class="chips">
-            <span class="tag">Java</span>
-            <span class="tag">Python</span>
-            <span class="tag">C++</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Bash</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">Redis</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LEADERSHIP -->
-  <section id="leadership">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="section-title">Leadership & Mentorship</div>
-          <div class="section-sub">
-            Ownership signal: co-founder delivery + Code Ninjas center leadership.
-          </div>
-          <div class="divider"></div>
-        </div>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Center Director / Instructor — Code Ninjas</h4>
-              <div class="stack"><span class="tag">Mentorship</span><span class="tag">Operations</span><span class="tag">Teaching</span></div>
-            </div>
-            <span class="badge">leadership</span>
-          </div>
-          <p>Lead operations and mentor learners in programming, debugging, and project execution.</p>
-          <ul class="bullets">
-            <li>Standardized onboarding + improved teaching consistency</li>
-            <li>Helped students build real projects (Unity / JS / Python)</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Co-Founder — Startup Delivery</h4>
-              <div class="stack"><span class="tag">0→1</span><span class="tag">Customers</span><span class="tag">On-call</span></div>
-            </div>
-            <span class="badge">ownership</span>
-          </div>
-          <p>Built and operated systems under real constraints: traffic spikes, outages, and customer expectations.</p>
-          <ul class="bullets">
-            <li>End-to-end responsibility: architecture → deploy → support</li>
-            <li>Created monitoring + playbooks to reduce blast radius</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Systems learning (applied)</h4>
-              <div class="stack"><span class="tag">OMSCS</span><span class="tag">Labs</span><span class="tag">Reliability</span></div>
-            </div>
-            <span class="badge">growth</span>
-          </div>
-          <p>I build small, demonstrable labs that map directly to platform interviews: failure recovery, throughput, and debugging.</p>
-          <ul class="bullets">
-            <li>K8s + Terraform drills (self-healing + reproducibility)</li>
-            <li>Concurrency + message passing experiments</li>
-          </ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="section-title">Contact</div>
-          <div class="divider"></div>
-        </div>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Fastest way</h4>
-              <div class="stack"><span class="tag">Email</span><span class="tag">Direct</span></div>
-            </div>
-            <span class="badge">contact</span>
-          </div>
-          <p style="font-family:var(--mono); font-size:.98rem; margin-top:6px;">karmacharya.sushov@gmail.com</p>
-          <div class="card-actions">
-            <a class="link" href="mailto:karmacharya.sushov@gmail.com">Email</a>
-            <button class="link muted" onclick="copyEmail(); return false;">Copy</button>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>Profiles</h4>
-              <div class="stack"><span class="tag">GitHub</span><span class="tag">LinkedIn</span></div>
-            </div>
-            <span class="badge">proof</span>
-          </div>
-          <p>See code, writeups, and work history.</p>
-          <div class="card-actions">
-            <a class="link" href="https://github.com/sushov" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="link muted" href="https://www.linkedin.com/in/sushov-karmacharya/" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-top">
-            <div>
-              <h4>What I’m looking for</h4>
-              <div class="stack"><span class="tag">Backend</span><span class="tag">Platform</span><span class="tag">Infra</span></div>
-            </div>
-            <span class="badge">roles</span>
-          </div>
-          <p>Backend / Platform / Infra roles where reliability and ownership matter: correctness, latency, observability, safe deployments.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <div class="foot">
-        <div>
-          <strong style="font-size:1rem;">Sushov Karmacharya</strong>
-          <p>Backend & Distributed Systems Engineer. Correctness-first design, reliability instincts, production ownership.</p>
-          <div class="status" aria-label="System status">
-            <span class="ok" aria-hidden="true"></span>
-            System operational • designed for failure • observed in production
-          </div>
-        </div>
-
-        <div style="display:flex; flex-direction:column; gap:10px; min-width:240px;">
-          <a class="btn primary" href="mailto:karmacharya.sushov@gmail.com">Let’s talk</a>
-          <button class="btn" onclick="window.scrollTo({top:0, behavior:'smooth'})">Back to top</button>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <span class="mini" aria-hidden="true"></span>
-    <span id="toastMsg">Copied.</span>
-  </div>
-
-  <script>
-    // ======== CONFIG (edit these) ========
-    const EMAIL = "karmacharya.sushov@gmail.com";
-    const RESUME_URL = "#"; // e.g. "./Sushov_Resume.pdf" or hosted link
-    // ====================================
-
-    const resumeBtn = document.getElementById("resumeBtn");
-    const toast = document.getElementById("toast");
-    const toastMsg = document.getElementById("toastMsg");
-    const copyEmailBtn = document.getElementById("copyEmailBtn");
-
-    resumeBtn.setAttribute("href", RESUME_URL);
-    resumeBtn.addEventListener("click", (e) => {
-      if (RESUME_URL === "#") {
-        e.preventDefault();
-        showToast("Set RESUME_URL in JS config (bottom of file).");
-      }
-    });
-
-    copyEmailBtn.addEventListener("click", () => copyEmail());
-
-    function showToast(msg){
-      toastMsg.textContent = msg;
-      toast.classList.add("show");
-      clearTimeout(showToast._t);
-      showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
-    }
-    window.showToast = showToast;
-
-    async function copyEmail(){
-      try{
-        await navigator.clipboard.writeText(EMAIL);
-        showToast("Email copied to clipboard.");
-      }catch(e){
-        const tmp = document.createElement("textarea");
-        tmp.value = EMAIL;
-        document.body.appendChild(tmp);
-        tmp.select();
-        document.execCommand("copy");
-        tmp.remove();
-        showToast("Email copied.");
-      }
-    }
-    // Mobile Menu Toggle
-    function toggleMenu() {
-      const links = document.getElementById('navLinks');
-      links.classList.toggle('open');
-    }
-  </script>
-</body>
+    <script type="module" src="assets/js/main.js"></script>
+  </body>
 </html>

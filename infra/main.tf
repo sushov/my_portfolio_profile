@@ -10,11 +10,30 @@ resource "google_storage_bucket" "website" {
   }
 }
 
-# 2. Upload the html file to bucket
-resource "google_storage_bucket_object" "static_site_src" {
-  name   = "index.html"
-  source = "../website/index.html"
+# ==============================================================================
+# 2. DYNAMIC ASSET UPLOAD (The Engineering Approach)
+# ==============================================================================
+resource "google_storage_bucket_object" "website_files" {
+  for_each = fileset("../website", "**")
+
   bucket = google_storage_bucket.website.name
+  name   = each.value                 # Remote path (e.g., "assets/css/style.css")
+  source = "../website/${each.value}" # Local path
+
+  # ----------------------------------------------------------------------------
+  # MIME Type Auto-Detection (Critical for Browsers)
+  # ----------------------------------------------------------------------------
+  content_type = lookup({
+    "html" = "text/html"
+    "css"  = "text/css"
+    "js"   = "application/javascript"
+    "png"  = "image/png"
+    "jpg"  = "image/jpeg"
+    "svg"  = "image/svg+xml"
+    "pdf"  = "application/pdf"
+    "json" = "application/json"
+    "txt"  = "text/plain"
+  }, split(".", each.value)[length(split(".", each.value)) - 1], "application/octet-stream")
 }
 
 # 3. Make the bucket Public using IAM (The Modern Way)
